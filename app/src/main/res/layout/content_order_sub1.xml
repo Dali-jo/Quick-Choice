@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible">
+
+    <RadioGroup
+        android:id="@+id/rag2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintVertical_bias="0.429">
+
+        <RadioButton
+            android:id="@+id/radio_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="소박스"
+            tools:layout_editor_absoluteX="-38dp"
+            tools:layout_editor_absoluteY="-32dp" />
+
+        <RadioButton
+            android:id="@+id/radio_flower"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="꽃/케익" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/rag3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.778"
+        app:layout_constraintVertical_bias="0.429">
+
+        <RadioButton
+            android:id="@+id/radio_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="대박스" />
+
+        <RadioButton
+            android:id="@+id/radio_ex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="기타"
+            tools:layout_editor_absoluteX="38dp"
+            tools:layout_editor_absoluteY="26dp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:text="1 경로"
+        android:textSize="18sp"
+        android:visibility="visible"
+        android:gravity="center"
+        android:background="#ffea00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.078" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:text="2 상세"
+        android:textSize="18sp"
+        android:visibility="visible"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.921" />
+    //tools:layout_editor_absoluteX="132dp"
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="출발"
+        android:textSize="15sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09" />
+
+    <EditText
+        android:id="@+id/order_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="도착"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintVertical_bias="0.22" />
+
+    <EditText
+        android:id="@+id/order_desti"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintVertical_bias="0.22" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:onClick="goOrderSub2"
+        android:text="계속하기"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.969" />
+
+    <Button
+        android:id="@+id/search1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="검색"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09" />
+
+    <Button
+        android:id="@+id/search2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="검색"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.219" />
+
+    <RadioGroup
+        android:id="@+id/rag1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.429">
+
+        <RadioButton
+            android:id="@+id/radio_paper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="서류" />
+
+        <RadioButton
+            android:id="@+id/radio_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="식품" />
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/imagetest"
+        android:layout_width="238dp"
+        android:layout_height="199dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.79"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.109" />
+
+    <Button
+        android:id="@+id/put_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사진 추가"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.712"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.945" />
+
+</android.support.constraint.ConstraintLayout>

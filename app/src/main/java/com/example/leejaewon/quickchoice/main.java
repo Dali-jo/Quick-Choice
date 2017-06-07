@@ -29,7 +29,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by LeeJaeWon on 2017-04-14.
@@ -55,7 +54,7 @@ public class main extends AppCompatActivity {
     public int fast;
     public String userid;
     public int  category;
-    public int finish = 0;
+    public int state = 0;
 
 
 
@@ -74,6 +73,7 @@ public class main extends AppCompatActivity {
     public Fragment fr_service = new content_service();
     public Fragment fr_setting = new content_setting();
     public Fragment fr_info = new content_information();
+    public Fragment fr_orderlist = new content_orderlist();
 
     public FragmentManager fm;
 
@@ -85,7 +85,6 @@ public class main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main_test);
-
         Intent intent = this.getIntent();
         userid=intent.getStringExtra("id");
 
@@ -146,7 +145,12 @@ public class main extends AppCompatActivity {
                         ft.commit();
                         drawerLayout.closeDrawer(navigationView);
                         break;
-                    case R.id.second_navigation_:
+                    case R.id.second_navigation_orderlist:
+                        fm=getFragmentManager();
+                        ft= fm.beginTransaction();
+                        ft.replace(R.id.fragment_main,fr_orderlist);
+                        ft.commit();
+                        drawerLayout.closeDrawer(navigationView);
 
                         break;
 
@@ -263,21 +267,24 @@ public class main extends AppCompatActivity {
 //        } else{
 //            fast="0";
 //        }
+        fm=getFragmentManager();
+        ft= fm.beginTransaction();
+        ft.replace(R.id.fragment_main,fr_main);
+        ft.commit();
 
-        String result;
-        main.CustomTask task = new main.CustomTask();
+
 
         try {
-            result = task.execute(start,desti,hopemoney,pickup,memo,String.valueOf(paytype),String.valueOf(fast),userid,String.valueOf(category),String.valueOf(finish)).get();
+            String result;
+            main.CustomTask task = new main.CustomTask();
+            result = task.execute(start,desti,hopemoney,pickup,memo,String.valueOf(paytype),String.valueOf(fast),userid,String.valueOf(category)).get();
             Log.i("리턴 값",result);
             Toast.makeText(this,result, Toast.LENGTH_LONG).show();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+        } catch(Exception e){
+
         }
 
-        Toast.makeText(this,""+start+desti+hopemoney+pickup+memo+paytype+fast+userid+category+finish,Toast.LENGTH_LONG).show();
+        Toast.makeText(this,""+start+desti+"돈"+hopemoney+"픽업시간"+pickup+"메모"+memo+"페이타입"+paytype+"급송"+fast+"유저"+userid+"카테고리"+category,Toast.LENGTH_LONG).show();
 
 
 //        Fragment fr;
@@ -285,10 +292,7 @@ public class main extends AppCompatActivity {
 //        FragmentTransaction ft;
 //
 //        fr= new content_main();
-        fm=getFragmentManager();
-        ft= fm.beginTransaction();
-        ft.replace(R.id.fragment_main,fr_main);
-        ft.commit();
+
 
 
 
@@ -306,7 +310,7 @@ public class main extends AppCompatActivity {
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "&start="+strings[0]+"&desti="+strings[1]+"&hopemoney="+strings[2]+"&pickup="+strings[3]+"&memo="+strings[4]+"&paytype="+strings[5]+"&fast="+strings[6]+"&userid="+strings[7]+"&category="+strings[8]+"&finish"+strings[9];
+                sendMsg = "&start="+strings[0]+"&desti="+strings[1]+"&hopemoney="+strings[2]+"&pickup="+strings[3]+"&memo="+strings[4]+"&paytype="+strings[5]+"&fast="+strings[6]+"&userid="+strings[7]+"&category="+strings[8];
                 osw.write(sendMsg);
                 osw.flush();
                 if(conn.getResponseCode() == conn.HTTP_OK) {

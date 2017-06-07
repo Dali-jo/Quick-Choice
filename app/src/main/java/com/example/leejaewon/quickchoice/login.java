@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,16 +26,26 @@ public class login extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_login);
 
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        FirebaseInstanceId.getInstance().getToken();
+
+
+
+
+
 
         id=(EditText) findViewById(R.id.login_id);
         pw=(EditText) findViewById(R.id.login_pw);
     }
+
+
+
+
 
      class CustomTask1 extends AsyncTask<String, Void, String> {
         String sendMsg, receiveMsg;
@@ -93,7 +106,7 @@ public class login extends AppCompatActivity {
             Toast.makeText(this,result, Toast.LENGTH_LONG).show();
             if(result.equals("로그인 성공")){
                 Intent intent = new Intent(this,main.class);
-                intent.putExtra("id",id.getText());
+                intent.putExtra("id",id.getText().toString());
                 startActivity(intent);
 //            Intent intent1 = new Intent(this, main.class);
 //            startActivity(intent1);

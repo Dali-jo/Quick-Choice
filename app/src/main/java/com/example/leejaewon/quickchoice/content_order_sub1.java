@@ -79,32 +79,6 @@ public class content_order_sub1 extends Fragment {
         ((main)getActivity()).start =start.getText().toString();
         ((main)getActivity()).desti =desty.getText().toString();
         ((main)getActivity()).category = this.category;
-        List<Address> list=null;
-
-        try {
-            Geocoder geocoder = new Geocoder(getActivity());
-
-            if(start.getText().toString()!=null) {
-                list=geocoder.getFromLocationName(start.getText().toString(),1);
-                if (list != null) {
-                    Address addr = list.get(0);
-                    ((main) getActivity()).start_Latitude = String.valueOf(addr.getLatitude());
-                    ((main) getActivity()).start_Longitude = String.valueOf(addr.getLongitude());
-                }
-            }
-            if(desty.getText().toString()!=null) {
-                list = geocoder.getFromLocationName(desty.getText().toString(), 1);
-                if (list != null) {
-                    Address addr = list.get(0);
-                    ((main) getActivity()).desti_Latitude = String.valueOf(addr.getLatitude());
-                    ((main) getActivity()).desti_Longitude = String.valueOf(addr.getLongitude());
-                }
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Log.i("도착:", ((main)getActivity()).desti_Latitude+"   " +((main)getActivity()).desti_Longitude);
 
     }
 
@@ -227,17 +201,54 @@ public class content_order_sub1 extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
-
+        Geocoder geocoder = new Geocoder(getActivity());
+        List<Address> list=null;
         if(requestCode==0){
             if(resultCode==1){
                 start.setText(data.getStringExtra("juso"));
-                Toast.makeText(getActivity(), data.getStringExtra("juso")+"fragment", Toast.LENGTH_SHORT).show();
+
+
+                try {
+
+
+
+                        list=geocoder.getFromLocationName(data.getStringExtra("juso"),1);
+                        if (list != null) {
+
+                            Address addr = list.get(0);
+                            ((main) getActivity()).start_Latitude = String.valueOf(addr.getLatitude());
+                            ((main) getActivity()).start_Longitude = String.valueOf(addr.getLongitude());
+                        }
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                Toast.makeText(getActivity(), data.getStringExtra("juso")+"fragment + la:"+((main)getActivity()).start_Latitude+"long"+((main)getActivity()).start_Longitude, Toast.LENGTH_SHORT).show();
 
             }
         }
         if(requestCode==1){
             if(resultCode==1){
                 desty.setText(data.getStringExtra("juso"));
+
+
+                    if (list != null) {
+                        try {
+                            list = geocoder.getFromLocationName(desty.getText().toString(), 1);
+                            Address addr = list.get(0);
+                            ((main) getActivity()).desti_Latitude = String.valueOf(addr.getLatitude());
+                            ((main) getActivity()).desti_Longitude = String.valueOf(addr.getLongitude());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+
+                        Log.i("도착:", ((main)getActivity()).desti_Latitude+"   " +((main)getActivity()).desti_Longitude);
+
+                }
             }
         }
         if(requestCode==3){

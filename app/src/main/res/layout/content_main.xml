@@ -1,34 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <android.support.constraint.ConstraintLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFAA00"
+    >
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="117dp"
-            android:layout_height="62dp"
-            android:onClick="goOrderSub1"
-            android:text="퀵접수 >"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.179"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.594" />
+    <Button
+        android:id="@+id/button"
+        android:layout_width="117dp"
+        android:layout_height="62dp"
+        android:onClick="goOrderSub1"
+        android:background="@drawable/quickbutton"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:text="퀵접수 >"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.197"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.732" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="117dp"
-            android:layout_height="62dp"
-            android:onClick="goOrderSub1"
-            android:text="용달 접수 >"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.857"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.594" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="117dp"
+        android:layout_height="62dp"
+        android:onClick="goOrderSub1"
+        android:background="@drawable/quickbutton"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:text="용달 접수>"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.818"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.732" />
 
-    </android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:layout_width="310dp"
+        android:layout_height="166dp"
+        app:srcCompat="@drawable/quickchoice"
+        android:id="@+id/imageView6"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.109"
+        tools:layout_editor_absoluteX="5dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="235dp"
+        android:layout_height="180dp"
+        app:srcCompat="@drawable/yongicon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.524" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="235dp"
+        android:layout_height="180dp"
+        app:srcCompat="@drawable/quickicon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.524"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+</android.support.constraint.ConstraintLayout>

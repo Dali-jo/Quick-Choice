@@ -3,9 +3,12 @@ package com.example.leejaewon.quickchoice;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.IdRes;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by LeeJaeWon on 2017-04-30.
@@ -73,6 +79,33 @@ public class content_order_sub1 extends Fragment {
         ((main)getActivity()).start =start.getText().toString();
         ((main)getActivity()).desti =desty.getText().toString();
         ((main)getActivity()).category = this.category;
+        List<Address> list=null;
+
+        try {
+            Geocoder geocoder = new Geocoder(getActivity());
+
+            if(start.getText().toString()!=null) {
+                list=geocoder.getFromLocationName(start.getText().toString(),1);
+                if (list != null) {
+                    Address addr = list.get(0);
+                    ((main) getActivity()).start_Latitude = String.valueOf(addr.getLatitude());
+                    ((main) getActivity()).start_Longitude = String.valueOf(addr.getLongitude());
+                }
+            }
+            if(desty.getText().toString()!=null) {
+                list = geocoder.getFromLocationName(desty.getText().toString(), 1);
+                if (list != null) {
+                    Address addr = list.get(0);
+                    ((main) getActivity()).desti_Latitude = String.valueOf(addr.getLatitude());
+                    ((main) getActivity()).desti_Longitude = String.valueOf(addr.getLongitude());
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.i("도착:", ((main)getActivity()).desti_Latitude+"   " +((main)getActivity()).desti_Longitude);
+
     }
 
 

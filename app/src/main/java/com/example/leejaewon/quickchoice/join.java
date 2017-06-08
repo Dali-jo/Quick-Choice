@@ -1,11 +1,13 @@
 package com.example.leejaewon.quickchoice;
 
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -38,6 +40,28 @@ public class join extends AppCompatActivity{
         name=(EditText) findViewById(R.id.join_name);
         phonNumber=(EditText) findViewById(R.id.join_phone);
 
+        Typeface typeface1 = Typeface.createFromAsset(getAssets(), "fonts/godic.ttf");
+        TextView textView1 = (TextView)findViewById(R.id.join_id);
+        TextView textView2 = (TextView)findViewById(R.id.join_pw);
+        TextView textView3 = (TextView)findViewById(R.id.join_pw_check);
+        TextView textView4 = (TextView)findViewById(R.id.join_phone);
+        TextView textView5 = (TextView)findViewById(R.id.join_ok);
+        TextView textView6 = (TextView)findViewById(R.id.join_cancle);
+        TextView textView7 = (TextView)findViewById(R.id.join_name);
+        TextView textView8 = (TextView)findViewById(R.id.join_1);
+        TextView textView9 = (TextView)findViewById(R.id.join_2);
+        TextView textView10 = (TextView)findViewById(R.id.join_3);
+
+        textView1.setTypeface(typeface1);
+        textView2.setTypeface(typeface1);
+        textView3.setTypeface(typeface1);
+        textView4.setTypeface(typeface1);
+        textView5.setTypeface(typeface1);
+        textView6.setTypeface(typeface1);
+        textView7.setTypeface(typeface1);
+        textView8.setTypeface(typeface1);
+        textView9.setTypeface(typeface1);
+        textView10.setTypeface(typeface1);
     }
 
     class CustomTask extends AsyncTask<String, Void, String> {

@@ -1,12 +1,14 @@
 package com.example.leejaewon.quickchoice;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -35,7 +37,16 @@ public class login extends AppCompatActivity {
         FirebaseInstanceId.getInstance().getToken();
 
 
+        Typeface typeface1 = Typeface.createFromAsset(getAssets(), "fonts/godic.ttf");
+        TextView textView1 = (TextView)findViewById(R.id.login_id);
+        TextView textView2 = (TextView)findViewById(R.id.button_login);
+        TextView textView3 = (TextView)findViewById(R.id.login_pw);
+        TextView textView4 = (TextView)findViewById(R.id.button_join);
 
+        textView1.setTypeface(typeface1);
+        textView2.setTypeface(typeface1);
+        textView3.setTypeface(typeface1);
+        textView4.setTypeface(typeface1);
 
 
 

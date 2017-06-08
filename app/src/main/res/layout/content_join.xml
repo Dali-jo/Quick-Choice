@@ -4,63 +4,68 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#DDDDDD">
 
     <EditText
         android:id="@+id/join_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="267dp"
+        android:layout_height="39dp"
         android:ems="10"
-        android:hint="ID"
+        android:hint=" ID를 입력해주세요."
         android:inputType="textPersonName"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.301"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.299" />
+        app:layout_constraintVertical_bias="0.285" />
 
     <EditText
         android:id="@+id/join_pw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="267dp"
+        android:layout_height="39dp"
         android:ems="10"
-        android:hint="비밀번호"
+        android:hint=" 비밀번호를 입력해주세요."
         android:inputType="textPersonName"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.301"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.429" />
+        app:layout_constraintVertical_bias="0.405" />
 
     <EditText
         android:id="@+id/join_pw_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="267dp"
+        android:layout_height="39dp"
         android:ems="10"
-        android:hint="비밀번호 확인"
+        android:hint=" 비밀번호를 다시 입력해주세요."
         android:inputType="textPersonName"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.301"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.574" />
+        app:layout_constraintVertical_bias="0.524" />
 
     <EditText
         android:id="@+id/join_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="267dp"
+        android:layout_height="39dp"
         android:ems="10"
-        android:hint="phone"
+        android:hint=" 전화번호를 입력해주세요."
         android:inputType="phone"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.301"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.706" />
+        app:layout_constraintVertical_bias="0.642" />
 
     <Button
         android:id="@+id/join_ok"
@@ -68,6 +73,8 @@
         android:layout_height="60dp"
         android:onClick="join_Button"
         android:text="가입"
+        android:textSize="20dp"
+        android:background="@drawable/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -81,6 +88,8 @@
         android:layout_height="60dp"
         android:onClick="join_Cancle"
         android:text="취소"
+        android:textSize="20dp"
+        android:background="@drawable/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.851"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -90,15 +99,58 @@
 
     <EditText
         android:id="@+id/join_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="267dp"
+        android:layout_height="39dp"
         android:ems="10"
-        android:hint="이름"
+        android:hint=" 이름을 입력해주세요."
         android:inputType="textPersonName"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.301"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.171" />
+        app:layout_constraintVertical_bias="0.169" />
+    <TextView
+        android:id="@+id/join_1"
+        android:layout_width="323dp"
+        android:layout_height="20dp"
+        android:text="'QUICK CHOICE'의 올바른 사용을 위하여"
+        android:textStyle="bold"
+        android:textSize="17dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.756"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06" />
+
+    <TextView
+        android:id="@+id/join_2"
+        android:layout_width="240dp"
+        android:layout_height="18dp"
+        android:text="를 정확히 입력해주세요."
+        android:textSize="17dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.096"
+        app:layout_constraintHorizontal_bias="1.0" />
+
+    <TextView
+        android:id="@+id/join_3"
+        android:layout_width="79dp"
+        android:layout_height="18dp"
+        android:text="개인정보"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:textColor="#FF0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.323"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.096" />
 </android.support.constraint.ConstraintLayout>

@@ -55,6 +55,10 @@ public class main extends AppCompatActivity {
     public String userid;
     public int  category;
     public int state = 0;
+    public String start_Latitude;  //위도
+    public String start_Longitude; // 경도
+    public String desti_Latitude;  //위도
+    public String desti_Longitude; // 경도
 
 
 
@@ -85,6 +89,9 @@ public class main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main_test);
+
+
+
         Intent intent = this.getIntent();
         userid=intent.getStringExtra("id");
 

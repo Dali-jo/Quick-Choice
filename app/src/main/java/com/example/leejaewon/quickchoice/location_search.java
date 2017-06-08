@@ -11,6 +11,5 @@ public class location_search extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
     }
 }

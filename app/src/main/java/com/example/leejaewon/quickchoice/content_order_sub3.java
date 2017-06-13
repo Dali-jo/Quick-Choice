@@ -35,8 +35,8 @@ public class content_order_sub3 extends Fragment {
 
     CheckBox check_fast;
 
-
-    public int year,month,day,hour,minute;
+    public String month,day,hour,minute;
+    public int year;
     public int myear,mmonth,mday,mhour,mminute;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -83,8 +83,76 @@ public class content_order_sub3 extends Fragment {
     private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener(){
         public void onDateSet(DatePicker view, int yearSelected, int monthOfYeaar, int dayOfMonth){
             year=yearSelected;
-            month=monthOfYeaar;
-            day=dayOfMonth;
+            switch (monthOfYeaar){
+                case 0:
+                    month="01";
+                    break;
+                case 1:
+                    month="02";
+                    break;
+                case 2:
+                    month="03";
+                    break;
+                case 3:
+                    month="04";
+                    break;
+                case 4:
+                    month="05";
+                    break;
+                case 5:
+                    month="06";
+                    break;
+                case 6:
+                    month="07";
+                    break;
+                case 7:
+                    month="08";
+                    break;
+                case 8:
+                    month="09";
+                    break;
+                case 9:
+                    month="10";
+                    break;
+                case 10:
+                    month="11";
+                    break;
+                case 11:
+                    month="12";
+                    break;
+            }
+            switch (dayOfMonth){
+                case 1:
+                    day="01";
+                    break;
+                case 2:
+                    day="02";
+                    break;
+                case 3:
+                    day="03";
+                    break;
+                case 4:
+                    day="04";
+                    break;
+                case 5:
+                    day="05";
+                    break;
+                case 6:
+                    day="06";
+                    break;
+                case 7:
+                    day="07";
+                    break;
+                case 8:
+                    day="08";
+                    break;
+                case 9:
+                    day="09";
+                    break;
+                default:
+                    day=String.valueOf(dayOfMonth);
+                    break;
+            }
             Toast.makeText(getActivity(),"날짜 : "+year+month+day,Toast.LENGTH_LONG).show();
             String date =  String.valueOf(year)+String.valueOf(month)+String.valueOf(day);
 
@@ -95,8 +163,76 @@ public class content_order_sub3 extends Fragment {
 
     private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener(){
         public void onTimeSet(TimePicker view, int hourOfDay, int min){
-            hour=hourOfDay;
-            minute=min;
+            switch (hourOfDay){
+                case 0:
+                    hour="00";
+                    break;
+                case 1:
+                    hour="01";
+                    break;
+                case 2:
+                    hour="02";
+                    break;
+                case 3:
+                    hour="03";
+                    break;
+                case 4:
+                    hour="04";
+                    break;
+                case 5:
+                    hour="05";
+                    break;
+                case 6:
+                    hour="06";
+                    break;
+                case 7:
+                    hour="07";
+                    break;
+                case 8:
+                    hour="08";
+                    break;
+                case 9:
+                    hour="09";
+                    break;
+                default:
+                    hour=String.valueOf(hourOfDay);
+                    break;
+            }
+            switch (min){
+                case 0:
+                    minute="00";
+                    break;
+                case 1:
+                    minute="01";
+                    break;
+                case 2:
+                    minute="02";
+                    break;
+                case 3:
+                    minute="03";
+                    break;
+                case 4:
+                    minute="04";
+                    break;
+                case 5:
+                    minute="05";
+                    break;
+                case 6:
+                    minute="06";
+                    break;
+                case 7:
+                    minute="07";
+                    break;
+                case 8:
+                    minute="08";
+                    break;
+                case 9:
+                    minute="09";
+                    break;
+                default:
+                    minute=String.valueOf(min);
+                    break;
+            }
             Toast.makeText(getActivity(),"시간 : "+hour+minute,Toast.LENGTH_LONG).show();
             String time = String.valueOf(hour)+String.valueOf(minute);
             dt_time.setText(time);
@@ -113,7 +249,7 @@ public class content_order_sub3 extends Fragment {
                 myear = c.get(Calendar.YEAR);
                 mmonth = c.get(Calendar.MONTH);
                 mday = c.get(Calendar.DAY_OF_MONTH);
-                 new DatePickerDialog(getActivity(),mDateSetListener,myear,month,mday).show();
+                 new DatePickerDialog(getActivity(),mDateSetListener,myear,mmonth,mday).show();
 
                 break;
 

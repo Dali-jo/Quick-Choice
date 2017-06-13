@@ -249,7 +249,7 @@ public class content_orderlist extends Fragment {
 //            JSONArray jsonArray=new JSONArray(wrapObject.toString());
             for(int i=0;i<jsonArray.size();i++){
                 JSONObject dataObject1 = (JSONObject)jsonArray.get(i);
-                orderlist_item  item = new orderlist_item((String)dataObject1.get("no"),(String)dataObject1.get("startadd"),(String)dataObject1.get("destinationadd"),(String)dataObject1.get("riderid"),(String)dataObject1.get("hopemoney"),(String)dataObject1.get("state"),(String)dataObject1.get("finalmoney"));
+                orderlist_item  item = new orderlist_item((String)dataObject1.get("no"),(String)dataObject1.get("startadd"),(String)dataObject1.get("destinationadd"),(String)dataObject1.get("riderid"),(String)dataObject1.get("hopemoney"),(String)dataObject1.get("state"),(String)dataObject1.get("finalmoney"),(String)dataObject1.get("startlati"),(String)dataObject1.get("startlongi"),(String)dataObject1.get("destinationlati"),(String)dataObject1.get("destinationlongi"),(String)dataObject1.get("phonenumber"));
 
 
                 orderlist_item_ArrayList.add(item);

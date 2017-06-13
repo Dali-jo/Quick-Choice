@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 /**
  * Created by LeeJaeWon on 2017-05-01.
@@ -21,6 +22,11 @@ public class content_order_sub2 extends Fragment {
     RadioButton bt_cash;
     RadioButton bt_card;
 
+    TextView tv_quote;
+    TextView tv_distance;
+    TextView tv_time;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
          View view =inflater.inflate(R.layout.content_order_sub2,container,false);
@@ -30,13 +36,37 @@ public class content_order_sub2 extends Fragment {
         bt_card=(RadioButton) view.findViewById(R.id.radio_card);
         bt_cash=(RadioButton) view.findViewById(R.id.radio_cash);
 
+        tv_distance=(TextView) view.findViewById(R.id.order_distance);
+        tv_quote=(TextView) view.findViewById(R.id.order_quote);
+        tv_time=(TextView) view.findViewById(R.id.order_time);
+
+
         onClick lis=new onClick();
 
         bt_cash.setOnClickListener(lis);
         bt_card.setOnClickListener(lis);
 
+
+        tv_distance.setText(((main)getActivity()).distance);
+        tv_time.setText(((main)getActivity()).time);
+
+
+
         return view;
+
     }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+
+
+
+
+
+    }
+
 
 
     @Override
@@ -44,6 +74,8 @@ public class content_order_sub2 extends Fragment {
         super.onPause();
         ((main)getActivity()).hopemoney = hope_money.getText().toString();
         ((main)getActivity()).paytype = pay;
+
+
     }
 
     class onClick implements View.OnClickListener{
@@ -60,4 +92,7 @@ public class content_order_sub2 extends Fragment {
         }
     }
 
+
+
 }
+

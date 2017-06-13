@@ -32,7 +32,7 @@
 
     <TextView
         android:id="@+id/judgment_time"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="소요 시간"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +44,7 @@
 
     <TextView
         android:id="@+id/judgment_money"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="금액"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -78,7 +78,7 @@
 
     <TextView
         android:id="@+id/judgment_start"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="출발지"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -90,7 +90,7 @@
 
     <TextView
         android:id="@+id/judgment_distance"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="총 거리"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -102,7 +102,7 @@
 
     <TextView
         android:id="@+id/judgment_desti"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="도착지"
         app:layout_constraintBottom_toBottomOf="parent"

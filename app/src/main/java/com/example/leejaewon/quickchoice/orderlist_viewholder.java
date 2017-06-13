@@ -25,6 +25,7 @@ public class orderlist_viewholder extends RecyclerView.ViewHolder {
         item_state=(TextView)itemview.findViewById(R.id.list_item_state);
         item_driver=(TextView)itemview.findViewById(R.id.list_item_driver);
         item_money=(TextView)itemview.findViewById(R.id.list_item_money);
+        //
     }
 
 }

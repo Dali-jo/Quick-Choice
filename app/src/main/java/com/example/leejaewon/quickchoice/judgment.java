@@ -1,5 +1,6 @@
 package com.example.leejaewon.quickchoice;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,7 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class judgment extends AppCompatActivity{
-    private float point;
+    private int point;
     private EditText memo;
     private RatingBar ratingBar;
     private TextView start;
@@ -32,26 +33,35 @@ public class judgment extends AppCompatActivity{
     private TextView money;
     private TextView time;
     private TextView distance;
+    private String userID;
+    private String riderID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_judgment);
+        Intent intent = getIntent();
+        riderID=intent.getStringExtra("driver");
+        userID=main.getUserId();
+        Log.i("유저아이디",userID);
 
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        ratingBar.setStepSize(1);
         memo = (EditText) findViewById(R.id.judgment_memo);
         start = (TextView) findViewById(R.id.judgment_start);
         desti = (TextView) findViewById(R.id.judgment_desti);
         money = (TextView) findViewById(R.id.judgment_money);
         time = (TextView) findViewById(R.id.judgment_time);
         distance = (TextView) findViewById(R.id.judgment_distance);
-
         Button ok = (Button) findViewById(R.id.judgment_ok);
+
+        start.setText(intent.getStringExtra("start"));
+        desti.setText(intent.getStringExtra("desti"));
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                point = rating;
+                point = (int)rating;
             }
         });
 
@@ -59,11 +69,12 @@ public class judgment extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
+                memo.getText().toString();
 
                 try {
 
                     CustomTask customTask = new CustomTask();
-                    customTask.execute().get();
+                    customTask.execute(riderID,userID,String.valueOf(point),memo.getText().toString()).get();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -85,12 +96,12 @@ public class judgment extends AppCompatActivity{
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://220.122.180.160:8080/join.jsp");
+                URL url = new URL("http://220.122.180.160:8080/jugement.jsp");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "&id="+strings[0]+"&pw="+strings[1]+"&name="+strings[2]+"&phon="+strings[3];
+                sendMsg = "&riderid="+strings[0]+"&userid="+strings[1]+"&point="+strings[2]+"&memo="+strings[3];
                 osw.write(sendMsg);
                 osw.flush();
                 if(conn.getResponseCode() == conn.HTTP_OK) {

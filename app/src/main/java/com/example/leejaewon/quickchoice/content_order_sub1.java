@@ -18,6 +18,14 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.skp.Tmap.TMapData;
+import com.skp.Tmap.TMapPoint;
+import com.skp.Tmap.TMapView;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -207,7 +215,6 @@ public class content_order_sub1 extends Fragment {
             if(resultCode==1){
                 start.setText(data.getStringExtra("juso"));
 
-
                 try {
 
 
@@ -234,21 +241,58 @@ public class content_order_sub1 extends Fragment {
             if(resultCode==1){
                 desty.setText(data.getStringExtra("juso"));
 
-
+                try {
+                    list = geocoder.getFromLocationName(data.getStringExtra("juso"), 1);
                     if (list != null) {
-                        try {
-                            list = geocoder.getFromLocationName(desty.getText().toString(), 1);
-                            Address addr = list.get(0);
-                            ((main) getActivity()).desti_Latitude = String.valueOf(addr.getLatitude());
-                            ((main) getActivity()).desti_Longitude = String.valueOf(addr.getLongitude());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Address addr = list.get(0);
+                        ((main) getActivity()).desti_Latitude = String.valueOf(addr.getLatitude());
+                        ((main) getActivity()).desti_Longitude = String.valueOf(addr.getLongitude());
+
+                        TMapView tMapView=new TMapView(getActivity());
+                        tMapView.setSKPMapApiKey("8c430cbd-0174-365a-879a-98909c5e6f73");
 
 
-                        Log.i("도착:", ((main)getActivity()).desti_Latitude+"   " +((main)getActivity()).desti_Longitude);
+                        TMapData tMapData=new TMapData();
+                        TMapPoint start = new TMapPoint(Double.valueOf(((main) getActivity()).start_Latitude),Double.valueOf(((main) getActivity()).start_Longitude));
+                        TMapPoint desti = new TMapPoint(Double.valueOf(((main) getActivity()).desti_Latitude),Double.valueOf(((main) getActivity()).desti_Longitude));
+                        tMapData.findPathDataAll(start,desti,new TMapData.FindPathDataAllListenerCallback(){
+                            @Override
+                            public void onFindPathDataAll(Document document){
+                                XMLDOMParser parser = new XMLDOMParser();
+                                Document doc = document;
+                                NodeList nodeList = doc.getElementsByTagName("kml");
+                                for (int i = 0; i < nodeList.getLength(); i++) {
+                                    Element e = (Element) nodeList.item(i);
+                                    ((main) getActivity()).totaldistance = parser.getValue(e, "tmap:totalDistance");
+                                    int meter = Integer.valueOf(((main) getActivity()).totaldistance);
+                                    int integer=meter/1000;
+                                    int prime = meter%1000;
+                                    ((main) getActivity()).distance = "    "+integer+"."+prime+"Km";
+                                    Log.i("거리",((main) getActivity()).distance);
 
+
+                                    ((main) getActivity()).totaltime = parser.getValue(e,"tmap:totalTime");
+                                    int minute = Integer.valueOf(((main) getActivity()).totaltime)/60;
+                                    //분으로 변환한 나머지가 변환된 초
+                                    int chsecond = Integer.valueOf(((main) getActivity()).totaltime) - minute*60;
+                                    //분을 60으로 나누면 시간
+                                    int hour = minute/60;
+                                    //시간으로 변환한 나머지가 변환된 분
+                                    minute = minute - hour*60;
+                                    ((main) getActivity()).time=hour+":"+minute;
+                                    Log.i("시간",((main) getActivity()).time);
+
+                                }
+                            }
+                        });
+
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+
+
+                Toast.makeText(getActivity(), data.getStringExtra("juso")+"fragment + la:"+((main)getActivity()).desti_Latitude+"long"+((main)getActivity()).desti_Longitude, Toast.LENGTH_SHORT).show();
             }
         }
         if(requestCode==3){

@@ -46,7 +46,7 @@ public class riderlist_atapter extends RecyclerView.Adapter<riderlist_viewholder
         public void onBindViewHolder(final riderlist_viewholder holder, int position){
             riderlist_item item = riderlist_items.get(position);
             holder.rider_name.setText(item.getName()+" 기사님");
-            holder.money.setText("가격:"+item.getMoney());
+            holder.money.setText("가격 : "+item.getMoney()+"원");
             finalmoney=item.getMoney();
             holder.riderid=item.getriderid();
             holder.itemView.setOnClickListener(new View.OnClickListener(){
@@ -58,6 +58,7 @@ public class riderlist_atapter extends RecyclerView.Adapter<riderlist_viewholder
                     try {
                       s=  customTask.execute(holder.riderid,no,finalmoney).get();
                         Log.i("입찰",s);
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
@@ -109,6 +110,7 @@ public class riderlist_atapter extends RecyclerView.Adapter<riderlist_viewholder
             }
             return receiveMsg;
         }
+
 
 
 

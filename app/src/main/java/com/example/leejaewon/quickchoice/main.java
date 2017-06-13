@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,6 +21,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,6 +31,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by LeeJaeWon on 2017-04-14.
@@ -59,6 +62,14 @@ public class main extends AppCompatActivity {
     public String start_Longitude; // 경도
     public String desti_Latitude;  //위도
     public String desti_Longitude; // 경도
+    public String totaltime;  // 시간 (초)
+    public String totaldistance; // 거리 (m)
+    public String time="";
+    public String distance="";
+
+    static public String myId;
+
+
 
 
 
@@ -94,6 +105,22 @@ public class main extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         userid=intent.getStringExtra("id");
+        myId=userid;
+
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        String token= FirebaseInstanceId.getInstance().getToken();
+
+//        Toast.makeText(this,token,Toast.LENGTH_LONG).show();
+
+        CustomTask1 customTask1 = new CustomTask1();
+        try {
+            String result=customTask1.execute(userid,token).get();
+            Log.i("토큰저장:" ,result);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         toolbar = (Toolbar) findViewById(R.id.toolbarInclude);
         setSupportActionBar(toolbar);
@@ -227,6 +254,9 @@ public class main extends AppCompatActivity {
 //        FragmentTransaction ft;
 //
 //        fr= new content_order_sub2();
+
+
+
         fm=getFragmentManager();
         ft= fm.beginTransaction();
         ft.replace(R.id.fragment_main,fr_order2);
@@ -260,11 +290,6 @@ public class main extends AppCompatActivity {
 
     }
 
-    public void location_search(View view){
-        Uri uri = Uri.parse("http://maps.google.com/maps?q="+"35.896474"+","+"128.622062");
-        Intent it = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(it);
-    }
 
     public void home(View view){
 //        pickup=order_pickuptime.getText().toString();
@@ -284,7 +309,7 @@ public class main extends AppCompatActivity {
         try {
             String result;
             main.CustomTask task = new main.CustomTask();
-            result = task.execute(start,desti,hopemoney,pickup,memo,String.valueOf(paytype),String.valueOf(fast),userid,String.valueOf(category)).get();
+            result = task.execute(start,desti,hopemoney,pickup+"00",memo,String.valueOf(paytype),String.valueOf(fast),userid,String.valueOf(category),start_Latitude,start_Longitude,desti_Latitude,desti_Longitude).get();
             Log.i("리턴 값",result);
             Toast.makeText(this,result, Toast.LENGTH_LONG).show();
         } catch(Exception e){
@@ -306,6 +331,12 @@ public class main extends AppCompatActivity {
 
     }
 
+    public static String getUserId(){
+        return myId;
+    }
+
+
+
     class CustomTask extends AsyncTask<String, Void, String> {
         String sendMsg, receiveMsg;
         @Override
@@ -317,7 +348,7 @@ public class main extends AppCompatActivity {
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "&start="+strings[0]+"&desti="+strings[1]+"&hopemoney="+strings[2]+"&pickup="+strings[3]+"&memo="+strings[4]+"&paytype="+strings[5]+"&fast="+strings[6]+"&userid="+strings[7]+"&category="+strings[8];
+                sendMsg = "&start="+strings[0]+"&desti="+strings[1]+"&hopemoney="+strings[2]+"&pickup="+strings[3]+"&memo="+strings[4]+"&paytype="+strings[5]+"&fast="+strings[6]+"&userid="+strings[7]+"&category="+strings[8]+"&start_Latitude="+strings[9]+"&start_Longitude="+strings[10]+"&desti_Latitude="+strings[11]+"&desti_Longitude="+strings[12];
                 osw.write(sendMsg);
                 osw.flush();
                 if(conn.getResponseCode() == conn.HTTP_OK) {
@@ -342,6 +373,46 @@ public class main extends AppCompatActivity {
         }
 
     }
+
+    private class CustomTask1 extends AsyncTask<String, Void, String> {
+        String sendMsg, receiveMsg;
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+                URL url = new URL("http://220.122.180.160:8080/savetoken.jsp");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "&id="+strings[0]+"&token="+strings[1];
+                osw.write(sendMsg);
+                osw.flush();
+                if(conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "EUC-KR");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+
+                } else {
+                    Log.i("통신 결과", conn.getResponseCode()+"에러");
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return receiveMsg;
+        }
+
+
+
+    }
+
 
 
     @Override

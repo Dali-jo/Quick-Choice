@@ -18,6 +18,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import static android.graphics.Color.BLUE;
+import static android.graphics.Color.RED;
+import static android.graphics.Color.YELLOW;
+
 /**
  * Created by LeeJaeWon on 2017-05-14.
  */
@@ -26,16 +30,25 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
     private Context mContext;
     private ArrayList<orderlist_item> orderlist_items;
     private String driverID;
+    private String startlati;
+    private String startlongi;
+    private String destinationlati;
+    private String destinationlongi;
+    private String phonenumber;
+    private String finalmoney;
+    private String userID;
+
 
     public orderlist_adapter(Context context,ArrayList<orderlist_item> orderlist_items){
         mContext=context;
         this.orderlist_items=orderlist_items;
+
     }
 
     @Override
     public orderlist_viewholder onCreateViewHolder(ViewGroup parent,int viewType){
         View baseView =View.inflate(mContext,R.layout.content_orderlist,null);
-//        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_orderlist,parent,true);
+
 
         orderlist_viewholder orderlist_viewholder = new orderlist_viewholder(baseView);
         return orderlist_viewholder;
@@ -45,13 +58,20 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
     public void onBindViewHolder(final orderlist_viewholder holder, int position){
         orderlist_item item = orderlist_items.get(position);
         driverID=item.getDriver();
+        startlati=item.getStartlati();
+        startlongi=item.getStartlongi();
+        destinationlati=item.getDestinationlati();
+        destinationlongi=item.getDestinationlongi();
+        phonenumber=item.getPhonenumber();
+        finalmoney=item.getFinalmoney();
         holder.item_start.setText("출발지:"+item.getStart());
         holder.item_desti.setText("도착지:"+item.getDesti());
         switch (item.getState()){
             case "0":
                 holder.item_state.setText("입찰중");
-                holder.item_driver.setText("X");
-                holder.item_money.setText("희망요금"+item.getMoney());
+                holder.item_state.setBackgroundColor(YELLOW);
+                holder.item_driver.setText("모집중");
+                holder.item_money.setText("희망요금 : "+item.getMoney()+"원");
                 holder.itemView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
@@ -68,15 +88,21 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
                     CustomTask1 customTask1=new CustomTask1();
                     String s = customTask1.execute(item.getDriver()).get();
                     holder.item_state.setText("배송중");
+                    holder.item_state.setBackgroundColor(RED);
                     holder.item_driver.setText("담당기사: "+s);
-                    holder.item_money.setText("요금: "+item.getFinalmoney());
+                    holder.item_money.setText("요금 :  "+item.getFinalmoney()+"원");
                     holder.itemView.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v){
                             Intent intent = new Intent(mContext,location.class);
-                            intent.putExtra("start",holder.item_start.toString());
-                            intent.putExtra("destiy",holder.item_desti.toString());
+                            intent.putExtra("start",holder.item_start.getText().toString());
+                            intent.putExtra("desti",holder.item_desti.getText().toString());
                             intent.putExtra("driver",driverID);
+                            intent.putExtra("startlati",startlati);
+                            intent.putExtra("startlongi",startlongi);
+                            intent.putExtra("destinationlati",destinationlati);
+                            intent.putExtra("destinationlongi",destinationlongi);
+                            intent.putExtra("phonenumber",phonenumber);
                             mContext.startActivity(intent);
                         }
                     });
@@ -92,13 +118,19 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
                     CustomTask1 customTask1=new CustomTask1();
                     String s = customTask1.execute(item.getDriver()).get();
                     holder.item_state.setText("배송완료");
+                    holder.item_state.setBackgroundColor(BLUE);
                     holder.item_driver.setText("담당기사: "+s);
-                    holder.item_money.setText("요금: "+item.getFinalmoney());
+                    holder.item_money.setText("요금 : "+item.getFinalmoney()+"원");
                     holder.itemView.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v){
 
                             Intent intent = new Intent(mContext,judgment.class);
+                            intent.putExtra("start",holder.item_start.getText().toString());
+                            intent.putExtra("desti",holder.item_desti.getText().toString());
+                            intent.putExtra("driver",driverID);
+                            intent.putExtra("money",finalmoney);
+
                             mContext.startActivity(intent);
                         }
                     });

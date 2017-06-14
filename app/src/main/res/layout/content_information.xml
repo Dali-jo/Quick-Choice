@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#DDDDDD">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -40,6 +41,7 @@
             android:layout_width="155dp"
             android:layout_height="38dp"
             android:text="TextView"
+            android:background="@drawable/circlebutton"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -52,6 +54,7 @@
             android:layout_width="155dp"
             android:layout_height="38dp"
             android:text="TextView"
+            android:background="@drawable/circlebutton"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -90,6 +93,8 @@
             android:layout_width="245dp"
             android:layout_height="48dp"
             android:text="로그아웃"
+            android:textSize="17dp"
+            android:background="@drawable/logout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -102,6 +107,8 @@
             android:layout_width="245dp"
             android:layout_height="48dp"
             android:text="비밀번호 재설정"
+            android:textSize="17dp"
+            android:background="@drawable/circlebutton"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -114,14 +121,16 @@
             android:layout_width="245dp"
             android:layout_height="48dp"
             android:text="자주 쓰는 주소 등록"
+            android:textSize="17dp"
+            android:background="@drawable/circlebutton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintVertical_bias="0.822" />
-            tools:layout_editor_absoluteX="197dp"
-            tools:layout_editor_absoluteY="99dp" />
+        tools:layout_editor_absoluteX="197dp"
+        tools:layout_editor_absoluteY="99dp" />
     </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>

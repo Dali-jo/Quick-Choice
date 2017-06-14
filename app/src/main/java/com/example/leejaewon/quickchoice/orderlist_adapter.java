@@ -37,6 +37,8 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
     private String phonenumber;
     private String finalmoney;
     private String userID;
+    private String start;
+    private String desti;
 
 
     public orderlist_adapter(Context context,ArrayList<orderlist_item> orderlist_items){
@@ -64,8 +66,10 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
         destinationlongi=item.getDestinationlongi();
         phonenumber=item.getPhonenumber();
         finalmoney=item.getFinalmoney();
-        holder.item_start.setText("출발지:"+item.getStart());
-        holder.item_desti.setText("도착지:"+item.getDesti());
+        start=item.getStart();
+        desti=item.getDesti();
+        holder.item_start.setText("출발지 : "+item.getStart());
+        holder.item_desti.setText("도착지 : "+item.getDesti());
         switch (item.getState()){
             case "0":
                 holder.item_state.setText("입찰중");
@@ -89,7 +93,7 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
                     String s = customTask1.execute(item.getDriver()).get();
                     holder.item_state.setText("배송중");
                     holder.item_state.setBackgroundColor(RED);
-                    holder.item_driver.setText("담당기사: "+s);
+                    holder.item_driver.setText("담당기사 : "+s);
                     holder.item_money.setText("요금 :  "+item.getFinalmoney()+"원");
                     holder.itemView.setOnClickListener(new View.OnClickListener(){
                         @Override
@@ -126,8 +130,8 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
                         public void onClick(View v){
 
                             Intent intent = new Intent(mContext,judgment.class);
-                            intent.putExtra("start",holder.item_start.getText().toString());
-                            intent.putExtra("desti",holder.item_desti.getText().toString());
+                            intent.putExtra("start",start);
+                            intent.putExtra("desti",desti);
                             intent.putExtra("driver",driverID);
                             intent.putExtra("money",finalmoney);
 

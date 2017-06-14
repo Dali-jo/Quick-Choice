@@ -3,6 +3,7 @@ package com.example.leejaewon.quickchoice;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -14,8 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.skp.Tmap.TMapData;
@@ -44,8 +47,8 @@ public class content_order_sub1 extends Fragment {
 
     EditText start;
     EditText desty;
-    Button bt1;
-    Button bt2;
+    ImageButton bt1;
+    ImageButton bt2;
 
 
     RadioGroup rg1;
@@ -54,13 +57,41 @@ public class content_order_sub1 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
         View view= inflater.inflate(R.layout.content_order_sub1,container,false);
+
+        Typeface typeface1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/godic.ttf");
+        TextView textView1 = (TextView) view.findViewById(R.id.textView3);
+        TextView textView2 = (TextView) view.findViewById(R.id.textView4);
+        TextView textView3 = (TextView) view.findViewById(R.id.radio_small);
+        TextView textView4 = (TextView) view.findViewById(R.id.radio_flower);
+        TextView textView5 = (TextView) view.findViewById(R.id.radio_big);
+        TextView textView6 = (TextView) view.findViewById(R.id.radio_ex);
+        TextView textView7 = (TextView) view.findViewById(R.id.textView6);
+        TextView textView8 = (TextView) view.findViewById(R.id.textView7);
+        TextView textView9 = (TextView) view.findViewById(R.id.button4);
+        TextView textView10 = (TextView) view.findViewById(R.id.radio_paper);
+        TextView textView11 = (TextView) view.findViewById(R.id.radio_food);
+        TextView textView12 = (TextView) view.findViewById(R.id.put_pic);
+
+        textView1.setTypeface(typeface1);
+        textView2.setTypeface(typeface1);
+        textView3.setTypeface(typeface1);
+        textView4.setTypeface(typeface1);
+        textView5.setTypeface(typeface1);
+        textView6.setTypeface(typeface1);
+        textView7.setTypeface(typeface1);
+        textView8.setTypeface(typeface1);
+        textView9.setTypeface(typeface1);
+        textView10.setTypeface(typeface1);
+        textView11.setTypeface(typeface1);
+        textView12.setTypeface(typeface1);
 
 
         start=(EditText) view.findViewById(R.id.order_start);
         desty=(EditText) view.findViewById(R.id.order_desti);
-        bt1=(Button) view.findViewById(R.id.search1);
-        bt2=(Button) view.findViewById(R.id.search2);
+        bt1=(ImageButton) view.findViewById(R.id.search1);
+        bt2=(ImageButton) view.findViewById(R.id.search2);
         listener lis = new listener();
         bt1.setOnClickListener(lis);
         bt2.setOnClickListener(lis);

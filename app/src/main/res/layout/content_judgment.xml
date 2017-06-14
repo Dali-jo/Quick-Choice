@@ -4,7 +4,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#DDDDDD">
+
+    <TextView
+        android:id="@+id/judgment_money"
+        android:layout_width="238dp"
+        android:layout_height="48dp"
+        android:background="@drawable/circlebutton"
+        android:ems="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.751" />
+
+    <TextView
+        android:id="@+id/judgment_start"
+        android:layout_width="238dp"
+        android:layout_height="48dp"
+        android:background="@drawable/circlebutton"
+        android:ems="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.366" />
+
+    <TextView
+        android:id="@+id/judgment_desti"
+        android:layout_width="238dp"
+        android:layout_height="48dp"
+        android:background="@drawable/circlebutton"
+        android:ems="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.462" />
+
+    <TextView
+        android:id="@+id/judgment_distance"
+        android:layout_width="238dp"
+        android:layout_height="48dp"
+        android:background="@drawable/circlebutton"
+        android:ems="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.562" />
+
+    <TextView
+        android:id="@+id/judgment_time"
+        android:layout_width="238dp"
+        android:layout_height="48dp"
+        android:background="@drawable/circlebutton"
+        android:ems="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.655" />
 
     <EditText
         android:id="@+id/judgment_memo"
@@ -13,6 +79,7 @@
         android:ems="10"
         android:hint="기사님에 대한 평가를 입력하세요"
         android:inputType="textPersonName"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -21,9 +88,12 @@
 
     <Button
         android:id="@+id/judgment_ok"
-        android:layout_width="368dp"
-        android:layout_height="50dp"
+        android:layout_width="413dp"
+        android:layout_height="51dp"
         android:text="완료"
+        android:background="#FFAA00"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -31,10 +101,12 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/judgment_time"
-        android:layout_width="wrap_content"
+        android:id="@+id/judgment_tv_time"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="소요 시간"
+        android:textSize="18dp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -43,10 +115,12 @@
         app:layout_constraintVertical_bias="0.657" />
 
     <TextView
-        android:id="@+id/judgment_money"
-        android:layout_width="wrap_content"
+        android:id="@+id/judgment_tv_money"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="금액"
+        android:textSize="18dp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -58,7 +132,9 @@
         android:id="@+id/textView9"
         android:layout_width="235dp"
         android:layout_height="20dp"
-        android:text="이용하신 기사님 어떠셧나요?"
+        android:text="이용하신 기사님 어떠셨나요?"
+        android:gravity="center"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -77,10 +153,12 @@
         app:layout_constraintVertical_bias="0.168" />
 
     <TextView
-        android:id="@+id/judgment_start"
-        android:layout_width="wrap_content"
+        android:id="@+id/judgment_tv_start"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="출발지"
+        android:gravity="center"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -89,10 +167,12 @@
         app:layout_constraintVertical_bias="0.367" />
 
     <TextView
-        android:id="@+id/judgment_distance"
-        android:layout_width="wrap_content"
+        android:id="@+id/judgment_tv_distance"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="총 거리"
+        android:textSize="18dp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -101,10 +181,12 @@
         app:layout_constraintVertical_bias="0.56" />
 
     <TextView
-        android:id="@+id/judgment_desti"
-        android:layout_width="wrap_content"
+        android:id="@+id/judgment_tv_desti"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="도착지"
+        android:textSize="18dp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -117,8 +199,10 @@
         android:layout_width="235dp"
         android:layout_height="50dp"
         android:text="이용해 주셔서 감사합니다. (^^)"
+        android:gravity="center"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"

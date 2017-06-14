@@ -1,6 +1,7 @@
 package com.example.leejaewon.quickchoice;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.MapView;
 import com.skp.Tmap.TMapMarkerItem;
@@ -50,6 +52,16 @@ public class location extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_location);
         Intent intent = getIntent();
+
+        Typeface typeface1 = Typeface.createFromAsset(getAssets(), "fonts/godic.ttf");
+        TextView textView1 = (TextView)findViewById(R.id.location_call);
+        TextView textView2 = (TextView)findViewById(R.id.button7);
+        TextView textView3 = (TextView)findViewById(R.id.textView26);
+
+        textView1.setTypeface(typeface1);
+        textView2.setTypeface(typeface1);
+        textView3.setTypeface(typeface1);
+
         start=intent.getStringExtra("start");
         desti=intent.getStringExtra("desti");
         driverID=intent.getStringExtra("driver");
@@ -63,15 +75,18 @@ public class location extends AppCompatActivity {
         call.setOnClickListener(calllistener);
 
         CustomTask2 customTask2= new CustomTask2();
-        String s= null;
+
         try {
+            String s= null;
             s = customTask2.execute(driverID).get();
+            Log.i("기사좌표",s);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        Log.i("기사좌표",s);
+
 
 
 

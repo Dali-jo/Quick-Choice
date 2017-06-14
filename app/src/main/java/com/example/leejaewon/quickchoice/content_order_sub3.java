@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.TimePickerDialog;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -40,7 +42,37 @@ public class content_order_sub3 extends Fragment {
     public int myear,mmonth,mday,mhour,mminute;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
         View view=inflater.inflate(R.layout.content_order_sub3,container,false);
+
+        Typeface typeface1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/godic.ttf");
+        TextView textView1 = (TextView) view.findViewById(R.id.textView3);
+        TextView textView2 = (TextView) view.findViewById(R.id.textView4);
+        TextView textView3 = (TextView) view.findViewById(R.id.textView6);
+        TextView textView4 = (TextView) view.findViewById(R.id.textView27);
+        TextView textView5 = (TextView) view.findViewById(R.id.order_pickuptime);
+        TextView textView6 = (TextView) view.findViewById(R.id.order_pickupdate);
+        TextView textView7 = (TextView) view.findViewById(R.id.textView7);
+        TextView textView8 = (TextView) view.findViewById(R.id.button4);
+        TextView textView9 = (TextView) view.findViewById(R.id.textView8);
+        TextView textView10 = (TextView) view.findViewById(R.id.order_memo);
+        TextView textView11 = (TextView) view.findViewById(R.id.order_fast);
+        TextView textView12 = (TextView) view.findViewById(R.id.select_date);
+        TextView textView13 = (TextView) view.findViewById(R.id.select_time);
+
+        textView1.setTypeface(typeface1);
+        textView2.setTypeface(typeface1);
+        textView3.setTypeface(typeface1);
+        textView4.setTypeface(typeface1);
+        textView5.setTypeface(typeface1);
+        textView6.setTypeface(typeface1);
+        textView7.setTypeface(typeface1);
+        textView8.setTypeface(typeface1);
+        textView9.setTypeface(typeface1);
+        textView10.setTypeface(typeface1);
+        textView11.setTypeface(typeface1);
+        textView12.setTypeface(typeface1);
+        textView13.setTypeface(typeface1);
 
         text_memo=(EditText) view.findViewById(R.id.order_memo);
 

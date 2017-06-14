@@ -4,60 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="visible">
-
-    <TextView
-        android:id="@+id/order_quote"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="TextView"
-        android:gravity="center"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.251"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.233" />
-
-    <TextView
-        android:id="@+id/order_time"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="TextView"
-        android:gravity="center"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.233"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.154" />
-
-    <TextView
-        android:id="@+id/order_distance"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="TextView"
-        android:gravity="center"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.233"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058" />
+    android:visibility="visible"
+    android:background="#DDDDDD">
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="180dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
+        android:layout_width="205dp"
+        android:layout_height="38dp"
         android:text="1 경로"
         android:textSize="18sp"
         android:visibility="visible"
         android:gravity="center"
+        android:background="#989898"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -65,13 +23,13 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="180dp"
-        android:layout_height="30dp"
+        android:layout_width="208dp"
+        android:layout_height="38dp"
         android:text="2 상세"
         android:textSize="18sp"
         android:visibility="visible"
         android:gravity="center"
-        android:background="#ffea00"
+        android:background="#FFAA00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -80,30 +38,71 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
+        android:layout_width="74dp"
+        android:layout_height="52dp"
         android:gravity="center"
         android:text="배송거리"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="18dp"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.116" />
+
+    <TextView
+        android:id="@+id/order_distance"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:background="@drawable/circlebutton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.815"
+        app:layout_constraintVertical_bias="0.115" />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
+        android:layout_width="74dp"
+        android:layout_height="52dp"
         android:gravity="center"
         android:text="배송시간"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.154" />
+        app:layout_constraintVertical_bias="0.207" />
+
+    <TextView
+        android:id="@+id/order_time"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:background="@drawable/circlebutton"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.815"
+        app:layout_constraintVertical_bias="0.205" />
+
+    <TextView
+        android:id="@+id/order_quote"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:background="@drawable/circlebutton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.815"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.306" />
 
     <Button
         android:id="@+id/button4"
@@ -111,102 +110,72 @@
         android:layout_height="wrap_content"
         android:onClick="goOrderSub3"
         android:text="계속하기"
+        android:textSize="20dp"
         android:visibility="visible"
+        android:background="@drawable/button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.985"
+        app:layout_constraintHorizontal_bias="0.917"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.969" />
+        app:layout_constraintVertical_bias="0.972" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
+        android:layout_width="74dp"
+        android:layout_height="52dp"
         android:gravity="center"
         android:text="견적가"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.251" />
+        app:layout_constraintVertical_bias="0.298" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
+        android:layout_width="74dp"
+        android:layout_height="52dp"
         android:gravity="center"
         android:text="희망요금"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348" />
+        app:layout_constraintVertical_bias="0.406" />
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
+        android:layout_width="74dp"
+        android:layout_height="52dp"
         android:gravity="center"
         android:text="결제방식"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.444" />
+        app:layout_constraintVertical_bias="0.549" />
 
     <EditText
         android:id="@+id/order_hopemoney"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:background="@drawable/circlebutton"
+        android:text="필수 사항이 아닙니다."
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintHorizontal_bias="0.815"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348" />
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.663"
-        app:layout_constraintVertical_bias="0.498">
-
-        <RadioButton
-            android:id="@+id/radio_cash"
-            android:layout_width="108dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="현금"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.695"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.499" />
-
-        <RadioButton
-            android:id="@+id/radio_card"
-            android:layout_width="108dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="카드"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.26"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.629" />
-    </RadioGroup>
+        app:layout_constraintVertical_bias="0.401" />
 
     <Button
         android:id="@+id/button3"
@@ -214,9 +183,56 @@
         android:layout_height="wrap_content"
         android:onClick="goOrderSub1"
         android:text="이전"
+        android:background="@drawable/button"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.969"
-        tools:layout_editor_absoluteX="12dp" />
+        app:layout_constraintVertical_bias="0.972"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.115" />
+
+    <RadioButton
+        android:id="@+id/radio_card"
+        android:layout_width="186dp"
+        android:layout_height="53dp"
+        android:layout_weight="1"
+        android:text="카드 결제"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.642" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.663"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.545"
+        >
+
+    </RadioGroup>
+
+    <RadioButton
+        android:id="@+id/radio_cash"
+        android:layout_width="186dp"
+        android:layout_height="53dp"
+        android:layout_weight="1"
+        android:text="현금 결제"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.545" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.leejaewon.quickchoice;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,7 @@ public class judgment extends AppCompatActivity{
     private TextView distance;
     private String userID;
     private String riderID;
+    private Button ok;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -45,15 +47,40 @@ public class judgment extends AppCompatActivity{
         userID=main.getUserId();
         Log.i("유저아이디",userID);
 
+        Typeface typeface1 = Typeface.createFromAsset(getAssets(), "fonts/godic.ttf");
+        TextView textView1 = (TextView)findViewById(R.id.judgment_tv_start);
+        TextView textView2 = (TextView)findViewById(R.id.judgment_tv_desti);
+        TextView textView3 = (TextView)findViewById(R.id.judgment_tv_distance);
+        TextView textView4 = (TextView)findViewById(R.id.judgment_tv_money);
+        TextView textView5 = (TextView)findViewById(R.id.judgment_tv_time);
+        TextView textView6 = (TextView)findViewById(R.id.textView9);
+        TextView textView7 = (TextView)findViewById(R.id.textView20);
+        memo = (EditText) findViewById(R.id.judgment_memo);
+        money = (TextView)findViewById(R.id.judgment_money);
+        ok = (Button) findViewById(R.id.judgment_ok);
+        time = (TextView)findViewById(R.id.judgment_time);
+        start = (TextView)findViewById(R.id.judgment_start);
+        distance = (TextView)findViewById(R.id.judgment_distance);
+        desti = (TextView)findViewById(R.id.judgment_desti);
+
+
+        textView1.setTypeface(typeface1);
+        textView2.setTypeface(typeface1);
+        textView3.setTypeface(typeface1);
+        textView4.setTypeface(typeface1);
+        textView5.setTypeface(typeface1);
+        textView6.setTypeface(typeface1);
+        textView7.setTypeface(typeface1);
+        memo.setTypeface(typeface1);
+        ok.setTypeface(typeface1);
+        money.setTypeface(typeface1);
+        time.setTypeface(typeface1);
+        start.setTypeface(typeface1);
+        distance.setTypeface(typeface1);
+        desti.setTypeface(typeface1);
+
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         ratingBar.setStepSize(1);
-        memo = (EditText) findViewById(R.id.judgment_memo);
-        start = (TextView) findViewById(R.id.judgment_start);
-        desti = (TextView) findViewById(R.id.judgment_desti);
-        money = (TextView) findViewById(R.id.judgment_money);
-        time = (TextView) findViewById(R.id.judgment_time);
-        distance = (TextView) findViewById(R.id.judgment_distance);
-        Button ok = (Button) findViewById(R.id.judgment_ok);
 
         start.setText(intent.getStringExtra("start"));
         desti.setText(intent.getStringExtra("desti"));

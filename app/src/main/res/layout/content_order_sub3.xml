@@ -145,7 +145,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:background="@drawable/circlebutton"
-        android:text="기사님에게 전달할 메세지를 입력해 주세요."
+        android:hint="기사님에게 전달할 메세지를 입력해 주세요."
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.792"

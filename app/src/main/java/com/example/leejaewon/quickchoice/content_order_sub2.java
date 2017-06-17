@@ -71,6 +71,7 @@ public class content_order_sub2 extends Fragment {
         tv_quote=(TextView) view.findViewById(R.id.order_quote);
         tv_time=(TextView) view.findViewById(R.id.order_time);
 
+        tv_quote.setText(((main)getActivity()).quote);
 
         onClick lis=new onClick();
 

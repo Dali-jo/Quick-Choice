@@ -109,7 +109,7 @@ public class location extends AppCompatActivity {
 
 
         //세팅
-        tMapView.setSKPMapApiKey("f146a2c8-167d-31ec-88bf-93f167149d2a"); //발급받은 api 키
+        tMapView.setSKPMapApiKey("8c430cbd-0174-365a-879a-98909c5e6f73"); //발급받은 api 키
 
 
         tMapView.setCompassMode(false);
@@ -198,6 +198,7 @@ public class location extends AppCompatActivity {
                     TMapMarkerItem a = tMapView.getMarkerItemFromID("rider");
                     TMapPoint now = new TMapPoint(Double.parseDouble(riderrati), Double.parseDouble(riderlongi));
                     a.setTMapPoint(now);
+                    tMapView.refreshMap();
                 }
 
                 sleep(2000);

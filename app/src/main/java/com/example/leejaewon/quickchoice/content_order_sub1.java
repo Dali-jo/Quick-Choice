@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,10 +51,26 @@ public class content_order_sub1 extends Fragment {
     ImageButton bt1;
     ImageButton bt2;
 
+    RadioButton bt_damas;
+    RadioButton bt_rabo;
+    RadioButton bt_ban;
+    RadioButton bt_ton;
+
+    RadioButton bt_paper;
+    RadioButton bt_small;
+    RadioButton bt_big;
+    RadioButton bt_food;
+    RadioButton bt_flower;
+    RadioButton bt_ex;
 
     RadioGroup rg1;
     RadioGroup rg2;
     RadioGroup rg3;
+
+    RadioGroup group_car;
+
+int meter=0;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -96,6 +113,8 @@ public class content_order_sub1 extends Fragment {
         bt1.setOnClickListener(lis);
         bt2.setOnClickListener(lis);
 
+        group_car=(RadioGroup)view.findViewById(R.id.group_car);
+
         rg1=(RadioGroup) view.findViewById(R.id.rag1);
         rg2=(RadioGroup) view.findViewById(R.id.rag2);
         rg3=(RadioGroup) view.findViewById(R.id.rag3);
@@ -106,12 +125,151 @@ public class content_order_sub1 extends Fragment {
         btn = (Button) view.findViewById(R.id.put_pic);
         iv = (ImageView)view.findViewById(R.id.imagetest);
 
+        bt_ban=(RadioButton)view.findViewById(R.id.delivery_ban);
+        bt_damas=(RadioButton)view.findViewById(R.id.delivery_damas);
+        bt_rabo=(RadioButton)view.findViewById(R.id.delivery_rabo);
+        bt_ton=(RadioButton)view.findViewById(R.id.delivery_ton);
+
+        bt_paper=(RadioButton)view.findViewById(R.id.radio_paper);
+        bt_small=(RadioButton)view.findViewById(R.id.radio_small);
+        bt_big=(RadioButton)view.findViewById(R.id.radio_big);
+        bt_food=(RadioButton)view.findViewById(R.id.radio_food);
+        bt_flower=(RadioButton)view.findViewById(R.id.radio_flower);
+        bt_ex=(RadioButton)view.findViewById(R.id.radio_ex);
+
+        bt_paper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category=0;
+                quote();
+            }
+        });
+
+        bt_small.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category=1;
+                quote();
+            }
+        });
+
+        bt_big.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category=2;
+                quote();
+            }
+        });
+
+        bt_food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category=3;
+                quote();
+            }
+        });
+
+        bt_flower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category=4;
+                quote();
+            }
+        });
+
+        bt_ex.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category=5;
+                quote();
+            }
+        });
+
+        if(((main)getActivity()).car==0){
+            group_car.setVisibility(View.GONE);
+            rg1.setVisibility(View.VISIBLE);
+            rg2.setVisibility(View.VISIBLE);
+            rg3.setVisibility(View.VISIBLE);
+        } else {
+            group_car.setVisibility(View.VISIBLE);
+            rg1.setVisibility(View.GONE);
+            rg2.setVisibility(View.GONE);
+            rg3.setVisibility(View.GONE);
+        }
+
+        bt_damas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((main)getActivity()).car=1;
+                quote();
+            }
+        });
+
+        bt_ban.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((main)getActivity()).car=3;
+                quote();
+            }
+        });
+
+        bt_rabo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((main)getActivity()).car=2;
+                quote();
+            }
+        });
+
+        bt_ton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((main)getActivity()).car=4;
+                quote();
+            }
+        });
+
+
+
+
+
         imagelistener imag_lis = new imagelistener();
         btn.setOnClickListener(imag_lis);
 
         return view;
 
     }
+    //견적가 계산
+    public void quote(){
+        switch (((main)getActivity()).car){
+            case 0:
+                Log.i("견적계산용 거리",String.valueOf(meter));
+                if(meter<=5000){
+                    ((main)getActivity()).quote="5000";
+                } else {
+                    int extra=(meter-4000)/1000;
+                    extra=extra*1000+5000;
+                    ((main)getActivity()).quote=String.valueOf(extra);
+                }
+                break;
+            case 1:
+                Log.i("견적계산용 거리",String.valueOf(meter));
+                ((main)getActivity()).quote="20000";
+                break;
+            case 2:
+                ((main)getActivity()).quote="40000";
+                break;
+            case 3:
+                ((main)getActivity()).quote="60000";
+                break;
+            case 4:
+                ((main)getActivity()).quote="80000";
+                break;
+        }
+    }
+
+
+
     @Override
     public void onPause(){
         super.onPause();
@@ -178,21 +336,27 @@ public class content_order_sub1 extends Fragment {
                     break;
                 case R.id.radio_paper:
                     category=0;
+                    quote();
                     break;
                 case R.id.radio_small:
                     category=1;
+                    quote();
                     break;
                 case R.id.radio_big:
                     category=2;
+                    quote();
                     break;
                 case R.id.radio_food:
                     category=3;
+                    quote();
                     break;
                 case R.id.radio_flower:
                     category=4;
+                    quote();
                     break;
                 case R.id.radio_ex:
                     category=5;
+                    quote();
                     break;
 
             }
@@ -295,10 +459,10 @@ public class content_order_sub1 extends Fragment {
                                 for (int i = 0; i < nodeList.getLength(); i++) {
                                     Element e = (Element) nodeList.item(i);
                                     ((main) getActivity()).totaldistance = parser.getValue(e, "tmap:totalDistance");
-                                    int meter = Integer.valueOf(((main) getActivity()).totaldistance);
+                                    meter = Integer.valueOf(((main) getActivity()).totaldistance);
                                     int integer=meter/1000;
                                     int prime = meter%1000;
-                                    ((main) getActivity()).distance = "    "+integer+"."+prime+"Km";
+                                    ((main) getActivity()).distance =integer+"."+prime+"Km";
                                     Log.i("거리",((main) getActivity()).distance);
 
 

@@ -49,6 +49,8 @@ public class riderlist_atapter extends RecyclerView.Adapter<riderlist_viewholder
             holder.money.setText("가격 : "+item.getMoney()+"원");
             finalmoney=item.getMoney();
             holder.riderid=item.getriderid();
+            holder.comcount.setText("배송횟수 : "+item.getComcount());
+            holder.point.setText("평점 : "+item.getPoint());
             holder.itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){

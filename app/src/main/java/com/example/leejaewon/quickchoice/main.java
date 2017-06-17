@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -48,6 +49,8 @@ public class main extends AppCompatActivity {
     public CheckBox order_fast;
     public EditText order_memo;
 
+    public TextView title;
+
     public String start;
     public String desti;
     public String hopemoney;
@@ -66,6 +69,8 @@ public class main extends AppCompatActivity {
     public String totaldistance; // 거리 (m)
     public String time="";
     public String distance="";
+    public int car=0;
+    public String quote="";   //견적가
 
     static public String myId;
 
@@ -129,6 +134,7 @@ public class main extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         navigationView = (NavigationView) findViewById(R.id.navigationView);
         setUpDrawerContent(navigationView);
+        title=(TextView)findViewById(R.id.toolbarTitle);
 
         if(findViewById(R.id.fragment_main) !=null){
             if(savedInstanceState != null) {
@@ -175,7 +181,7 @@ public class main extends AppCompatActivity {
 //                        fr= new content_order_sub1();
                         fm=getFragmentManager();
                         ft= fm.beginTransaction();
-                        ft.replace(R.id.fragment_main,fr_order1);
+                        ft.replace(R.id.fragment_main,fr_main);
                         ft.commit();
                         drawerLayout.closeDrawer(navigationView);
                         break;
@@ -233,12 +239,17 @@ public class main extends AppCompatActivity {
 
     }
 
-    public void goOrderSub1(View v){
-//        Fragment fr;
-//        FragmentManager fm;
-//        FragmentTransaction ft;
-//
-//        fr= new content_order_sub1();
+    public void godelivery(View v){  // 퀵 접수
+        car=0;
+        fm=getFragmentManager();
+        ft= fm.beginTransaction();
+        ft.replace(R.id.fragment_main,fr_order1);
+        ft.commit();
+    }
+
+    public void goOrderSub1(View v){   //용달 접수
+
+        car=1;
         fm=getFragmentManager();
         ft= fm.beginTransaction();
         ft.replace(R.id.fragment_main,fr_order1);
@@ -264,6 +275,14 @@ public class main extends AppCompatActivity {
 
 
 
+    }
+
+    public void gosub1(View v){
+        if(car==0){
+            godelivery(v);
+        } else{
+            goOrderSub1(v);
+        }
     }
 
     public void goOrderSub3(View v){

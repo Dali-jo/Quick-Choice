@@ -155,7 +155,7 @@ public class rider_list extends AppCompatActivity {
             for(int i=0;i<jsonArray.size();i++){
                 JSONObject dataObject1 = (JSONObject)jsonArray.get(i);
                 riderlist_item item = new riderlist_item((String)dataObject1.get("riderid"),(String)dataObject1.get("tendermoney"),(String)dataObject1.get(no),(String)dataObject1.get("name"),(String)dataObject1.get("comcount"),(String)dataObject1.get("point"));
-
+//riderfaceUri 받아와야함
 
                 riderlist_item_ArrayList.add(item);
                 Log.i("아이템 등록" , riderlist_item_ArrayList.toString());

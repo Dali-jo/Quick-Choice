@@ -9,13 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.MapView;
 import com.skp.Tmap.TMapMarkerItem;
 import com.skp.Tmap.TMapPoint;
 import com.skp.Tmap.TMapView;
+import com.squareup.picasso.Picasso;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,7 +46,16 @@ public class location extends AppCompatActivity {
     private Button call;
     private String riderrati="";
     private String riderlongi="";
+    private String name="";
+    private String finalmoney="";
+    private String memo="";
+    private String payment="";
+    private String goodsphoto="";
+    private String ridername="";
+
     update up;
+
+    int count=0;
 
 
 
@@ -53,14 +65,40 @@ public class location extends AppCompatActivity {
         setContentView(R.layout.content_location);
         Intent intent = getIntent();
 
+        // 추가
         Typeface typeface1 = Typeface.createFromAsset(getAssets(), "fonts/godic.ttf");
         TextView textView1 = (TextView)findViewById(R.id.location_call);
         TextView textView2 = (TextView)findViewById(R.id.button7);
-        TextView textView3 = (TextView)findViewById(R.id.textView26);
+        TextView location_rider=(TextView)findViewById(R.id.location_rider);
+        TextView location_start = (TextView)findViewById(R.id.location_start);
+        TextView location_dest= (TextView)findViewById(R.id.location_dest);
+        TextView location_payment= (TextView)findViewById(R.id.location_payment);
+        TextView location_distance= (TextView)findViewById(R.id.location_distance);
+        TextView location_pay= (TextView)findViewById(R.id.location_pay);
+        TextView location_memo= (TextView)findViewById(R.id.location_memo);
+
+
+        ImageView location_goods=(ImageView)findViewById(R.id.location_goods);
+
 
         textView1.setTypeface(typeface1);
         textView2.setTypeface(typeface1);
-        textView3.setTypeface(typeface1);
+        location_rider.setTypeface(typeface1);
+        location_start.setTypeface(typeface1);
+        location_dest.setTypeface(typeface1);
+        location_payment.setTypeface(typeface1);
+        location_distance.setTypeface(typeface1);
+        location_pay.setTypeface(typeface1);
+        location_memo.setTypeface(typeface1);
+
+        name=intent.getStringExtra("name");
+        finalmoney=intent.getStringExtra("finalmoney");
+        memo=intent.getStringExtra("memo");
+        payment=intent.getStringExtra("payment");
+        goodsphoto=intent.getStringExtra("goodsphoto");
+
+        //여기 까지
+
 
         start=intent.getStringExtra("start");
         desti=intent.getStringExtra("desti");
@@ -88,7 +126,50 @@ public class location extends AppCompatActivity {
         }
 
 
+        //추가
+        CustomTask1 customTask1=new CustomTask1();
+        try {
+            name = customTask1.execute(driverID).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
+        location_rider.setText(name);
+        location_start.setText(start);
+        location_dest.setText(desti);
+//        location_payment.setText(payment);
+        if(payment.equals("0")){
+            location_payment.setText("카드");
+        }
+        if(payment.equals("1")){
+            location_payment.setText("현금");
+        }
+//        location_distance.setText();
+        location_pay.setText(finalmoney);
+        location_memo.setText(memo);
+
+
+
+
+
+        Toast.makeText(this,intent.getExtras().toString(), Toast.LENGTH_LONG).show();
+
+
+        Picasso.with(getApplicationContext())
+                .load("http://220.122.180.160:8080/picture/goods/"+goodsphoto+".jpg")
+//                .load("http://220.122.180.160:8080/picture/goods/"+fileAddr)
+
+
+//                .placeholder(R.drawable.ic_launcher)//이미지가 존재하지 않을                                                                                                      경우 대체 이미지
+
+//                .resize(100, 100) // 이미지 크기를 재조정하고 싶을 경우
+
+                .fit()    // 이미지에 맞게 조절절
+
+                .into(location_goods);
+        //여기까지
 
         //선언
         MapView mapView11 = (MapView)findViewById(R.id.mapView);
@@ -120,7 +201,7 @@ public class location extends AppCompatActivity {
         tMapView.setTrackingMode(false);
         tMapView.setSightVisible(true);
 
-        tMapView.setCenterPoint(Double.parseDouble(riderlongi), Double.parseDouble(riderrati));
+
 
 
 
@@ -140,15 +221,12 @@ public class location extends AppCompatActivity {
         tourMarkerItem2.setVisible(TMapMarkerItem.VISIBLE);
 //        tMapView.addMarkerItem("aa",tourMarkerItem);
 
-        TMapMarkerItem tourMarkerItem3 = new TMapMarkerItem();
-        TMapPoint rider = new TMapPoint(Double.parseDouble(riderrati), Double.parseDouble(riderlongi));
-        tourMarkerItem3.setTMapPoint(rider);
-        tourMarkerItem3.setVisible(TMapMarkerItem.VISIBLE);
+
 
         mapView11.addView(tMapView);
         tMapView.addMarkerItem("destination",tourMarkerItem2);
         tMapView.addMarkerItem("start", tourMarkerItem);
-        tMapView.addMarkerItem("rider",tourMarkerItem3);
+
 
         up = new update();
         up.start();
@@ -163,8 +241,9 @@ public class location extends AppCompatActivity {
     }
     @Override
     public void onPause(){
-        super.onPause();
         up.runStop();
+        super.onPause();
+
     }
 
     public class calllistener implements View.OnClickListener {
@@ -194,12 +273,7 @@ public class location extends AppCompatActivity {
                 CustomTask2 cus=new CustomTask2();
 
                 cus.execute(driverID);
-                if(tMapView.getMarkerItemFromID("rider")!=null) {
-                    TMapMarkerItem a = tMapView.getMarkerItemFromID("rider");
-                    TMapPoint now = new TMapPoint(Double.parseDouble(riderrati), Double.parseDouble(riderlongi));
-                    a.setTMapPoint(now);
-                    tMapView.refreshMap();
-                }
+
 
                 sleep(2000);
             } catch (InterruptedException e) {
@@ -235,8 +309,6 @@ public class location extends AppCompatActivity {
                         buffer.append(str);
                     }
                     receiveMsg = buffer.toString();
-
-                    update(receiveMsg);
                 } else {
                     Log.i("통신 결과", conn.getResponseCode()+"에러");
                 }
@@ -249,22 +321,91 @@ public class location extends AppCompatActivity {
             return receiveMsg;
         }
 
+        @Override
+        protected void onPostExecute(String result){
+            super.onPostExecute(result);
+            update(result);
 
-        public void update(String s){
-            int i=0;
-            StringTokenizer tokenizer=new StringTokenizer(receiveMsg,",");
-            while(tokenizer.hasMoreTokens()){
-                if(i==0){
-                    riderrati=tokenizer.nextToken();
+
+        }
+
+
+        public void update(String s) {
+
+            int i = 0;
+            StringTokenizer tokenizer = new StringTokenizer(s, ",");
+            while (tokenizer.hasMoreTokens()) {
+                if (i == 0) {
+                    riderrati = tokenizer.nextToken();
                     i++;
-                } else{
-                    riderlongi=tokenizer.nextToken();
+                } else {
+                    riderlongi = tokenizer.nextToken();
                 }
 
             }
-            Log.i("받음2",receiveMsg);
-            Log.i("라위2",riderrati);
-            Log.i("라경2",riderlongi);
+            Log.i("받은좌표:", riderlongi + " " + riderrati);
+            if (riderlongi != "" && riderrati != "") {
+                if (count == 0) {
+                    tMapView.setCenterPoint(Double.parseDouble(riderlongi), Double.parseDouble(riderrati));
+                    count++;
+
+                    TMapMarkerItem tourMarkerItem3 = new TMapMarkerItem();
+                    TMapPoint rider = new TMapPoint(Double.parseDouble(riderrati), Double.parseDouble(riderlongi));
+                    tourMarkerItem3.setTMapPoint(rider);
+                    tourMarkerItem3.setVisible(TMapMarkerItem.VISIBLE);
+                    tMapView.addMarkerItem("rider", tourMarkerItem3);
+
+                }
+
+                if (tMapView.getMarkerItemFromID("rider") != null) {
+                    TMapMarkerItem a = tMapView.getMarkerItemFromID("rider");
+                    TMapPoint now = new TMapPoint(Double.parseDouble(riderrati), Double.parseDouble(riderlongi));
+                    a.setTMapPoint(now);
+                    tMapView.refreshMap();
+                }
+                Log.i("받음2", receiveMsg);
+                Log.i("라위2", riderrati);
+                Log.i("라경2", riderlongi);
+            }
+        }
+
+
+
+    }
+
+    class CustomTask1 extends AsyncTask<String, Void, String> {
+        String sendMsg, receiveMsg;
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+                URL url = new URL("http://220.122.180.160:8080/serchname.jsp");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "&riderid="+strings[0];
+                osw.write(sendMsg);
+                osw.flush();
+                if(conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "EUC-KR");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+
+                } else {
+                    Log.i("통신 결과", conn.getResponseCode()+"에러");
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return receiveMsg;
         }
 
 

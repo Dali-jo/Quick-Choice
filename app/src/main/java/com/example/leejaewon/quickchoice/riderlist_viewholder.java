@@ -2,6 +2,7 @@ package com.example.leejaewon.quickchoice;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -16,7 +17,7 @@ public class riderlist_viewholder extends RecyclerView.ViewHolder {
     public String no;
     public TextView comcount;
     public TextView point;
-
+    public ImageView gisaimage;
 
 
     public riderlist_viewholder(View itemview){
@@ -26,7 +27,7 @@ public class riderlist_viewholder extends RecyclerView.ViewHolder {
         money=(TextView)itemview.findViewById(R.id.tv_gisapay);
         comcount=(TextView)itemview.findViewById(R.id.tv_comcount);
         point=(TextView)itemview.findViewById(R.id.tv_gisascore);
-
+        gisaimage=(ImageView)itemview.findViewById(R.id.iv_gisaimage);
 
 
     }

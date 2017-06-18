@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,7 +40,13 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
     private String userID;
     private String start;
     private String desti;
-
+    //추가
+    private String memo;
+    private String payment;
+    private String goodsphoto;
+    private String ridername;
+    private String st;
+    private String de;
 
     public orderlist_adapter(Context context,ArrayList<orderlist_item> orderlist_items){
         mContext=context;
@@ -68,6 +75,13 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
         finalmoney=item.getFinalmoney();
         start=item.getStart();
         desti=item.getDesti();
+        //추가
+        memo=item.getMemo();
+        payment=item.getPayment();
+        goodsphoto=item.getGoodsphoto();
+        st=item.getStart();
+        de=item.getDesti();
+
         holder.item_start.setText("출발지 : "+item.getStart());
         holder.item_desti.setText("도착지 : "+item.getDesti());
         switch (item.getState()){
@@ -95,10 +109,15 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
                     holder.item_state.setBackgroundColor(RED);
                     holder.item_driver.setText("담당기사 : "+s);
                     holder.item_money.setText("요금 :  "+item.getFinalmoney()+"원");
+                    //추가
+                    ridername=s;
+
                     holder.itemView.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v){
                             Intent intent = new Intent(mContext,location.class);
+//                            intent.putExtra("start",st);
+//                            intent.putExtra("desti",de);
                             intent.putExtra("start",holder.item_start.getText().toString());
                             intent.putExtra("desti",holder.item_desti.getText().toString());
                             intent.putExtra("driver",driverID);
@@ -107,6 +126,16 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
                             intent.putExtra("destinationlati",destinationlati);
                             intent.putExtra("destinationlongi",destinationlongi);
                             intent.putExtra("phonenumber",phonenumber);
+
+                            //추가
+                            intent.putExtra("name",ridername);
+                            intent.putExtra("memo",memo);
+                            intent.putExtra("payment",payment);
+                            intent.putExtra("goodsphoto",goodsphoto);
+                            intent.putExtra("finalmoney",finalmoney);
+//                            Toast.makeText(this,orderlist_items.toString(),Toast.LENGTH_LONG).show();
+
+
                             mContext.startActivity(intent);
                         }
                     });

@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -51,6 +53,18 @@ public class riderlist_atapter extends RecyclerView.Adapter<riderlist_viewholder
             holder.riderid=item.getriderid();
             holder.comcount.setText("배송횟수 : "+item.getComcount());
             holder.point.setText("평점 : "+item.getPoint());
+            Picasso.with(mContext)
+                    .load("http://220.122.180.160:8080/picture/goods/tmp_1497713028877.jpg")
+//                .load("http://220.122.180.160:8080/picture/goods/"+fileAddr)
+
+
+//                .placeholder(R.drawable.ic_launcher)//이미지가 존재하지 않을                                                                                                      경우 대체 이미지
+
+//                .resize(100, 100) // 이미지 크기를 재조정하고 싶을 경우
+
+                    .fit()    // 이미지에 맞게 조절절
+
+                    .into(holder.gisaimage);
             holder.itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){

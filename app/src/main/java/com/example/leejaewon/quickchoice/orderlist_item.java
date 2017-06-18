@@ -17,8 +17,12 @@ public class orderlist_item {
     private String destinationlati;
     private String destinationlongi;
     private String phonenumber;
+    //추가
+    private String memo;
+    private String payment;
+    private String goodsphoto;
 
-    public orderlist_item(String no, String start, String desti, String driver, String money,String state,String finalmoney,String startlati,String startlongi,String destinationlati,String destinationlongi,String phonenumber) {
+    public orderlist_item(String no, String start, String desti, String driver, String money,String state,String finalmoney,String startlati,String startlongi,String destinationlati,String destinationlongi,String phonenumber,String memo,String payment,String goodsphoto) {
         this.no=no;
         this.start=start;
         this.desti=desti;
@@ -32,6 +36,11 @@ public class orderlist_item {
         this.destinationlongi=destinationlongi;
         this.phonenumber=phonenumber;
         //생성자 추가 안했음
+        //추가
+        this.memo=memo;
+        this.payment=payment;
+        this.goodsphoto=goodsphoto;
+
     }
 
     public String getNo(){
@@ -58,6 +67,10 @@ public class orderlist_item {
     public String getDestinationlati(){return destinationlati;}
     public String getDestinationlongi(){return destinationlongi;}
     public String getPhonenumber(){return phonenumber;}
+    //추가
+    public String getMemo(){return memo;}
+    public String getPayment(){return payment;}
+    public String getGoodsphoto(){return goodsphoto;}
 
 
 

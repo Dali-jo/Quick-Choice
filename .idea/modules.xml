@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Quick-Choice_camera.iml" filepath="$PROJECT_DIR$/Quick-Choice_camera.iml" />
       <module fileurl="file://$PROJECT_DIR$/QuickChoice.iml" filepath="$PROJECT_DIR$/QuickChoice.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

@@ -1,6 +1,8 @@
 package com.example.leejaewon.quickchoice;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -52,6 +54,7 @@ public class location extends AppCompatActivity {
     private String payment="";
     private String goodsphoto="";
     private String ridername="";
+    private String distance="";
 
     update up;
 
@@ -96,6 +99,7 @@ public class location extends AppCompatActivity {
         memo=intent.getStringExtra("memo");
         payment=intent.getStringExtra("payment");
         goodsphoto=intent.getStringExtra("goodsphoto");
+        distance=intent.getStringExtra("distance");
 
         //여기 까지
 
@@ -136,6 +140,7 @@ public class location extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        location_distance.setText(distance);
         location_rider.setText(name);
         location_start.setText(start);
         location_dest.setText(desti);
@@ -210,6 +215,8 @@ public class location extends AppCompatActivity {
 //        TMapPoint desti = new TMapPoint(destinationlongi,destinationlati);
         tourMarkerItem.setTMapPoint(start);
 //        tourMarkerItem.setTMapPoint(desti);
+        Bitmap a = BitmapFactory.decodeResource(this.getResources(),R.drawable.startposition);
+        tourMarkerItem.setIcon(a);
         tourMarkerItem.setVisible(TMapMarkerItem.VISIBLE);
 //        tMapView.addMarkerItem("aa",tourMarkerItem);
 
@@ -218,6 +225,8 @@ public class location extends AppCompatActivity {
         TMapPoint desti = new TMapPoint(destinationlati,destinationlongi);
 //        tourMarkerItem.setTMapPoint(start);
         tourMarkerItem2.setTMapPoint(desti);
+        Bitmap b = BitmapFactory.decodeResource(this.getResources(),R.drawable.destination);
+        tourMarkerItem2.setIcon(b);
         tourMarkerItem2.setVisible(TMapMarkerItem.VISIBLE);
 //        tMapView.addMarkerItem("aa",tourMarkerItem);
 
@@ -344,28 +353,34 @@ public class location extends AppCompatActivity {
 
             }
             Log.i("받은좌표:", riderlongi + " " + riderrati);
-            if (riderlongi != "" && riderrati != "") {
-                if (count == 0) {
-                    tMapView.setCenterPoint(Double.parseDouble(riderlongi), Double.parseDouble(riderrati));
-                    count++;
+            if (riderlongi != "" || riderrati != "") {
+                if(riderlongi=="null"||riderrati=="null") {
+                    if (riderlongi != null || riderrati != null) {
+                        if (count == 0) {
+                            tMapView.setCenterPoint(Double.parseDouble(riderlongi), Double.parseDouble(riderrati));
+                            count++;
 
-                    TMapMarkerItem tourMarkerItem3 = new TMapMarkerItem();
-                    TMapPoint rider = new TMapPoint(Double.parseDouble(riderrati), Double.parseDouble(riderlongi));
-                    tourMarkerItem3.setTMapPoint(rider);
-                    tourMarkerItem3.setVisible(TMapMarkerItem.VISIBLE);
-                    tMapView.addMarkerItem("rider", tourMarkerItem3);
+                            TMapMarkerItem tourMarkerItem3 = new TMapMarkerItem();
+                            TMapPoint rider = new TMapPoint(Double.parseDouble(riderrati), Double.parseDouble(riderlongi));
+                            tourMarkerItem3.setTMapPoint(rider);
+                            Bitmap c = BitmapFactory.decodeResource(getBaseContext().getResources(),R.drawable.riderposition);
+                            tourMarkerItem3.setIcon(c);
+                            tourMarkerItem3.setVisible(TMapMarkerItem.VISIBLE);
+                            tMapView.addMarkerItem("rider", tourMarkerItem3);
 
+                        }
+
+                        if (tMapView.getMarkerItemFromID("rider") != null) {
+                            TMapMarkerItem a = tMapView.getMarkerItemFromID("rider");
+                            TMapPoint now = new TMapPoint(Double.parseDouble(riderrati), Double.parseDouble(riderlongi));
+                            a.setTMapPoint(now);
+                            tMapView.refreshMap();
+                        }
+                        Log.i("받음2", receiveMsg);
+                        Log.i("라위2", riderrati);
+                        Log.i("라경2", riderlongi);
+                    }
                 }
-
-                if (tMapView.getMarkerItemFromID("rider") != null) {
-                    TMapMarkerItem a = tMapView.getMarkerItemFromID("rider");
-                    TMapPoint now = new TMapPoint(Double.parseDouble(riderrati), Double.parseDouble(riderlongi));
-                    a.setTMapPoint(now);
-                    tMapView.refreshMap();
-                }
-                Log.i("받음2", receiveMsg);
-                Log.i("라위2", riderrati);
-                Log.i("라경2", riderlongi);
             }
         }
 

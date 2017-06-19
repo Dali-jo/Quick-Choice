@@ -135,6 +135,7 @@ public class join extends AppCompatActivity{
             result = task.execute(id.getText().toString(),pw.getText().toString(),name.getText().toString(),phonNumber.getText().toString()).get();
             Log.i("리턴 값",result);
             Toast.makeText(this,result, Toast.LENGTH_LONG).show();
+            finish();
         } catch (Exception e) {
 
         }

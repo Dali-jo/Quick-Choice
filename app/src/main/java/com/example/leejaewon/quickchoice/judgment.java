@@ -84,6 +84,8 @@ public class judgment extends AppCompatActivity{
 
         start.setText(intent.getStringExtra("start"));
         desti.setText(intent.getStringExtra("desti"));
+        distance.setText(intent.getStringExtra("distance"));
+        money.setText(intent.getStringExtra("finalmoney"));
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override

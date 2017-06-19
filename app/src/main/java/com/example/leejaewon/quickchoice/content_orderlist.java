@@ -173,8 +173,7 @@ public class content_orderlist extends Fragment {
                     sb.append(line);
                 }
 
-                receiveArray(sb.toString());
-                publishProgress();
+
 //                receiveMsg=sb.toString();
 
 //                receiveArray(sb.toString());
@@ -218,7 +217,38 @@ public class content_orderlist extends Fragment {
             orderlistView.setAdapter(orderlist_adapter);
             receiveArray(s);
 
+            try {
+                JSONParser parser = new JSONParser();
 
+
+                JSONObject wrapObject = null;
+                wrapObject = (JSONObject)parser.parse(s);
+
+//            wrapObject.get("list");
+
+
+                JSONArray jsonArray=  (JSONArray)wrapObject.get("list");
+//            JSONArray jsonArray=new JSONArray(wrapObject.toString());
+                for(int i=0;i<jsonArray.size();i++){
+                    JSONObject dataObject1 = (JSONObject)jsonArray.get(i);
+                    orderlist_item  item = new orderlist_item((String)dataObject1.get("no"),(String)dataObject1.get("startadd"),(String)dataObject1.get("destinationadd"),(String)dataObject1.get("riderid"),(String)dataObject1.get("hopemoney"),(String)dataObject1.get("state"),(String)dataObject1.get("finalmoney"),(String)dataObject1.get("startlati"),(String)dataObject1.get("startlongi"),(String)dataObject1.get("destinationlati"),(String)dataObject1.get("destinationlongi"),(String)dataObject1.get("phonenumber"),(String)dataObject1.get("memo"),(String)dataObject1.get("pay"),(String)dataObject1.get("goodsphoto"),(String)dataObject1.get("car"),(String)dataObject1.get("maytime"),(String)dataObject1.get("distance"));
+
+
+
+                    orderlist_item_ArrayList.add(item);
+                    Log.i("아이템 등록" , orderlist_item_ArrayList.toString());
+                }
+
+
+
+
+
+
+
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
 
         public String getrecevie(){
@@ -245,38 +275,7 @@ public class content_orderlist extends Fragment {
 
 
 
-        try {
-            JSONParser parser = new JSONParser();
 
-
-            JSONObject wrapObject = null;
-            wrapObject = (JSONObject)parser.parse(dataObject);
-
-//            wrapObject.get("list");
-
-
-            JSONArray jsonArray=  (JSONArray)wrapObject.get("list");
-//            JSONArray jsonArray=new JSONArray(wrapObject.toString());
-            for(int i=0;i<jsonArray.size();i++){
-                JSONObject dataObject1 = (JSONObject)jsonArray.get(i);
-                orderlist_item  item = new orderlist_item((String)dataObject1.get("no"),(String)dataObject1.get("startadd"),(String)dataObject1.get("destinationadd"),(String)dataObject1.get("riderid"),(String)dataObject1.get("hopemoney"),(String)dataObject1.get("state"),(String)dataObject1.get("finalmoney"),(String)dataObject1.get("startlati"),(String)dataObject1.get("startlongi"),(String)dataObject1.get("destinationlati"),(String)dataObject1.get("destinationlongi"),(String)dataObject1.get("phonenumber"),(String)dataObject1.get("memo"),(String)dataObject1.get("pay"),(String)dataObject1.get("goodsphoto"));
-
-
-
-                orderlist_item_ArrayList.add(item);
-                Log.i("아이템 등록" , orderlist_item_ArrayList.toString());
-            }
-
-
-
-
-
-
-
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
 
     }

@@ -22,7 +22,11 @@ public class orderlist_item {
     private String payment;
     private String goodsphoto;
 
-    public orderlist_item(String no, String start, String desti, String driver, String money,String state,String finalmoney,String startlati,String startlongi,String destinationlati,String destinationlongi,String phonenumber,String memo,String payment,String goodsphoto) {
+    private String car;
+    private String maytime;
+    private String distance;
+
+    public orderlist_item(String no, String start, String desti, String driver, String money,String state,String finalmoney,String startlati,String startlongi,String destinationlati,String destinationlongi,String phonenumber,String memo,String payment,String goodsphoto,String car,String maytime,String distance) {
         this.no=no;
         this.start=start;
         this.desti=desti;
@@ -40,6 +44,10 @@ public class orderlist_item {
         this.memo=memo;
         this.payment=payment;
         this.goodsphoto=goodsphoto;
+
+        this.car=car;
+        this.maytime=maytime;
+        this.distance=distance;
 
     }
 
@@ -71,6 +79,9 @@ public class orderlist_item {
     public String getMemo(){return memo;}
     public String getPayment(){return payment;}
     public String getGoodsphoto(){return goodsphoto;}
+    public String getCar(){return car;}
+    public String getMaytime(){return maytime;}
+    public String getDistance(){return distance;}
 
 
 

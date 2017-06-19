@@ -68,35 +68,32 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="205dp"
+        android:layout_width="180dp"
         android:layout_height="38dp"
+        android:layout_marginLeft="0dp"
+        android:background="#FFAA00"
+        android:gravity="center"
         android:text="1 경로"
         android:textSize="18sp"
         android:visibility="visible"
-        android:gravity="center"
-        android:background="#FFAA00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="208dp"
+        android:layout_width="180dp"
         android:layout_height="38dp"
+        android:background="#989898"
+        android:gravity="center"
         android:text="2 상세"
         android:textSize="18sp"
         android:visibility="visible"
-        android:gravity="center"
-        android:background="#989898"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
     //tools:layout_editor_absoluteX="132dp"
 
     <TextView
@@ -111,22 +108,24 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.104" />
+        app:layout_constraintVertical_bias="0.116" />
 
     <EditText
         android:id="@+id/order_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textMultiLine"
         android:lines="2"
         android:maxLines="2"
+        android:textSize="15dp"
+        android:ems="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.103" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView7"
@@ -140,20 +139,22 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintVertical_bias="0.253" />
 
     <EditText
         android:id="@+id/order_desti"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:lines="2"
+        android:textSize="15dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_bias="0.39"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.232" />
 
     <Button
         android:id="@+id/button4"
@@ -204,12 +205,12 @@
         android:id="@+id/imagetest"
         android:layout_width="146dp"
         android:layout_height="111dp"
-        app:srcCompat="@drawable/camara"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.741"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:srcCompat="@drawable/camara" />
 
     <Button
         android:id="@+id/put_pic"
@@ -231,7 +232,7 @@
         app:srcCompat="@drawable/dest"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.21"
+        app:layout_constraintVertical_bias="0.222"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.924" />

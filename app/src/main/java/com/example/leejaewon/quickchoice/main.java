@@ -49,6 +49,8 @@ public class main extends AppCompatActivity {
     public CheckBox order_fast;
     public EditText order_memo;
 
+    private TextView myname;
+
     public TextView title;
 
     public String start;
@@ -153,6 +155,11 @@ public class main extends AppCompatActivity {
          order_memo= (EditText) findViewById(R.id.order_memo);
         order_paytype=(RadioButton) findViewById(R.id.radio_cash);
         order_fast=(CheckBox) findViewById(R.id.order_fast);
+        myname=(TextView)navigationView.findViewById(R.id.myname);
+
+//        myname my=new myname();
+//        my.execute(userid);
+
 
     }
 
@@ -323,12 +330,19 @@ public class main extends AppCompatActivity {
         ft.replace(R.id.fragment_main,fr_main);
         ft.commit();
 
-
+        String mony;
+        if(hopemoney.equals("")){
+            mony=quote;
+        }else {
+            mony=hopemoney;
+        }
+        Log.i("설정된홉머니",hopemoney);
+        Log.i("설정된 금액",mony);
 
         try {
             String result;
             main.CustomTask task = new main.CustomTask();
-            result = task.execute(start,desti,hopemoney,pickup+"00",memo,String.valueOf(paytype),String.valueOf(fast),userid,String.valueOf(category),start_Latitude,start_Longitude,desti_Latitude,desti_Longitude).get();
+            result = task.execute(start,desti,mony,pickup+"00",memo,String.valueOf(paytype),String.valueOf(fast),userid,String.valueOf(category),start_Latitude,start_Longitude,desti_Latitude,desti_Longitude,String.valueOf(car),time,totaldistance).get();
             Log.i("리턴 값",result);
             Toast.makeText(this,result, Toast.LENGTH_LONG).show();
         } catch(Exception e){
@@ -368,7 +382,7 @@ public class main extends AppCompatActivity {
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "&start="+strings[0]+"&desti="+strings[1]+"&hopemoney="+strings[2]+"&pickup="+strings[3]+"&memo="+strings[4]+"&paytype="+strings[5]+"&fast="+strings[6]+"&userid="+strings[7]+"&category="+strings[8]+"&start_Latitude="+strings[9]+"&start_Longitude="+strings[10]+"&desti_Latitude="+strings[11]+"&desti_Longitude="+strings[12];
+                sendMsg = "&start="+strings[0]+"&desti="+strings[1]+"&hopemoney="+strings[2]+"&pickup="+strings[3]+"&memo="+strings[4]+"&paytype="+strings[5]+"&fast="+strings[6]+"&userid="+strings[7]+"&category="+strings[8]+"&start_Latitude="+strings[9]+"&start_Longitude="+strings[10]+"&desti_Latitude="+strings[11]+"&desti_Longitude="+strings[12]+"&car="+strings[13]+"&maytime="+strings[14]+"&distance="+strings[15];
                 osw.write(sendMsg);
                 osw.flush();
                 if(conn.getResponseCode() == conn.HTTP_OK) {
@@ -390,6 +404,52 @@ public class main extends AppCompatActivity {
                 e.printStackTrace();
             }
             return receiveMsg;
+        }
+
+    }
+
+    class myname extends AsyncTask<String, Void, String> {
+        String sendMsg, receiveMsg;
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+                URL url = new URL("http://220.122.180.160:8080/myname.jsp");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "&userid="+strings[0];
+                osw.write(sendMsg);
+                osw.flush();
+                if(conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "EUC-KR");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+
+                } else {
+                    Log.i("통신 결과", conn.getResponseCode()+"에러");
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return receiveMsg;
+        }
+        @Override
+        protected void onPostExecute(String s){
+            super.onPostExecute(s);
+            Log.i("받음",s);
+            if(s!=null){
+                myname.setText(s);
+            }
+
         }
 
     }

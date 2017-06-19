@@ -52,7 +52,12 @@ public class riderlist_atapter extends RecyclerView.Adapter<riderlist_viewholder
             finalmoney=item.getMoney();
             holder.riderid=item.getriderid();
             holder.comcount.setText("배송횟수 : "+item.getComcount());
-            holder.point.setText("평점 : "+item.getPoint());
+            if(item.getPoint()==null){
+                holder.point.setText("평점 : 0.0");
+            } else {
+                holder.point.setText("평점 : "+item.getPoint());
+            }
+
             Picasso.with(mContext)
                     .load("http://220.122.180.160:8080/picture/goods/tmp_1497713028877.jpg")
 //                .load("http://220.122.180.160:8080/picture/goods/"+fileAddr)
@@ -73,8 +78,8 @@ public class riderlist_atapter extends RecyclerView.Adapter<riderlist_viewholder
                     CustomTask customTask=new CustomTask();
                     try {
                       s=  customTask.execute(holder.riderid,no,finalmoney).get();
+//                        ((rider_list)mContext).finish();
                         Log.i("입찰",s);
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
@@ -127,6 +132,13 @@ public class riderlist_atapter extends RecyclerView.Adapter<riderlist_viewholder
             return receiveMsg;
         }
 
+        @Override
+        protected void onPostExecute(String s){
+            super.onPostExecute(s);
+
+
+
+        }
 
 
 

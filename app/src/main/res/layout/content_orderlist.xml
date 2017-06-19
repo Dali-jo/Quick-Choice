@@ -15,43 +15,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/list_item_start"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_weight="1"
-                    android:text="출발지 : "
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/list_item_desti"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_weight="1"
-                    android:text="목적지 : "
-                    android:textSize="18dp" />
-
-            </LinearLayout>
-
             <TextView
                 android:id="@+id/list_item_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_weight="1"
                 android:background="#ffdc1f"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="진행 상태"
-                android:textSize="20dp" />
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/list_item_start"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="출발지 : "
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            </LinearLayout>
 
 
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/list_item_desti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="목적지 : "
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -67,8 +75,8 @@
                 android:background="@drawable/graybutton"
                 android:paddingLeft="25dp"
                 android:text="담당기사 : "
-                android:textSize="20dp"
-                android:gravity="center"/>
+                android:textSize="15sp"
+                android:gravity="right"/>
 
             <TextView
                 android:id="@+id/list_item_money"
@@ -79,9 +87,10 @@
                 android:background="@drawable/graybutton"
                 android:paddingRight="25dp"
                 android:text="금액 : "
-                android:textSize="20dp"
+                android:textSize="15sp"
                 android:gravity="center"/>
 
         </RelativeLayout>
+
     </LinearLayout>
 </LinearLayout>

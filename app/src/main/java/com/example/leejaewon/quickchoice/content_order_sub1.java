@@ -416,7 +416,7 @@ public class content_order_sub1 extends Fragment {
     }
 
     public void search_add(View v, int i) {
-        Intent intent = new Intent(getActivity(), address_search.class);
+        Intent intent = new Intent(getActivity(), webview.class);
         startActivityForResult(intent, i);
     }
 
@@ -431,8 +431,10 @@ public class content_order_sub1 extends Fragment {
                 try {
 
 
+
                     list = geocoder.getFromLocationName(data.getStringExtra("juso"), 1);
-                    if (list != null) {
+                    Log.i("리스트",data.getStringExtra("juso"));
+                    if (list.size()>0) {
 
                         Address addr = list.get(0);
                         ((main) getActivity()).start_Latitude = String.valueOf(addr.getLatitude());
@@ -455,7 +457,8 @@ public class content_order_sub1 extends Fragment {
 
                 try {
                     list = geocoder.getFromLocationName(data.getStringExtra("juso"), 1);
-                    if (list != null) {
+                    Log.i("리스트",data.getStringExtra("juso"));
+                    if (list.size()>0) {
                         Address addr = list.get(0);
                         ((main) getActivity()).desti_Latitude = String.valueOf(addr.getLatitude());
                         ((main) getActivity()).desti_Longitude = String.valueOf(addr.getLongitude());

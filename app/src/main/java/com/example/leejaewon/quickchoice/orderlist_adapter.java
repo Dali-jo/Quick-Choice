@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,6 +46,7 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
     private String ridername;
     private String st;
     private String de;
+    private String distance;
 
     public orderlist_adapter(Context context,ArrayList<orderlist_item> orderlist_items){
         mContext=context;
@@ -79,6 +79,7 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
         memo=item.getMemo();
         payment=item.getPayment();
         goodsphoto=item.getGoodsphoto();
+        distance=item.getDistance();
         st=item.getStart();
         de=item.getDesti();
 
@@ -111,34 +112,9 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
                     holder.item_money.setText("요금 :  "+item.getFinalmoney()+"원");
                     //추가
                     ridername=s;
+listener lis = new listener(1,item,s);
 
-                    holder.itemView.setOnClickListener(new View.OnClickListener(){
-                        @Override
-                        public void onClick(View v){
-                            Intent intent = new Intent(mContext,location.class);
-//                            intent.putExtra("start",st);
-//                            intent.putExtra("desti",de);
-                            intent.putExtra("start",holder.item_start.getText().toString());
-                            intent.putExtra("desti",holder.item_desti.getText().toString());
-                            intent.putExtra("driver",driverID);
-                            intent.putExtra("startlati",startlati);
-                            intent.putExtra("startlongi",startlongi);
-                            intent.putExtra("destinationlati",destinationlati);
-                            intent.putExtra("destinationlongi",destinationlongi);
-                            intent.putExtra("phonenumber",phonenumber);
-
-                            //추가
-                            intent.putExtra("name",ridername);
-                            intent.putExtra("memo",memo);
-                            intent.putExtra("payment",payment);
-                            intent.putExtra("goodsphoto",goodsphoto);
-                            intent.putExtra("finalmoney",finalmoney);
-//                            Toast.makeText(this,orderlist_items.toString(),Toast.LENGTH_LONG).show();
-
-
-                            mContext.startActivity(intent);
-                        }
-                    });
+                    holder.itemView.setOnClickListener(lis);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -154,19 +130,8 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
                     holder.item_state.setBackgroundColor(BLUE);
                     holder.item_driver.setText("담당기사: "+s);
                     holder.item_money.setText("요금 : "+item.getFinalmoney()+"원");
-                    holder.itemView.setOnClickListener(new View.OnClickListener(){
-                        @Override
-                        public void onClick(View v){
-
-                            Intent intent = new Intent(mContext,judgment.class);
-                            intent.putExtra("start",start);
-                            intent.putExtra("desti",desti);
-                            intent.putExtra("driver",driverID);
-                            intent.putExtra("money",finalmoney);
-
-                            mContext.startActivity(intent);
-                        }
-                    });
+                    listener lis=new listener(2,item,s);
+                    holder.itemView.setOnClickListener(lis);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -185,6 +150,56 @@ public class orderlist_adapter extends RecyclerView.Adapter<orderlist_viewholder
     @Override
     public int getItemCount(){
         return orderlist_items.size();
+    }
+
+    private class listener implements View.OnClickListener {
+        int i;
+        orderlist_item data;
+        String name;
+        public listener(int i,orderlist_item data,String name){
+            this.i =i;
+            this.data = data;
+            this.name=name;
+        }
+        public listener(int i,orderlist_item data){
+            this.i =i;
+            this.data = data;
+        }
+        @Override
+        public void onClick(View v){
+            if(i==1){
+                Intent intent = new Intent(mContext,location.class);
+                intent.putExtra("start",data.getStart());
+                intent.putExtra("desti",data.getDesti());
+                intent.putExtra("distance",data.getDistance());
+                intent.putExtra("driver",data.getDriver());
+                intent.putExtra("startlati",data.getStartlati());
+                intent.putExtra("startlongi",data.getStartlongi());
+                intent.putExtra("destinationlati",data.getDestinationlati());
+                intent.putExtra("destinationlongi",data.getDestinationlongi());
+                intent.putExtra("phonenumber",data.getPhonenumber());
+
+                //추가
+                intent.putExtra("name",name);
+                intent.putExtra("memo",data.getMemo());
+                intent.putExtra("payment",data.getPayment());
+                intent.putExtra("goodsphoto",data.getGoodsphoto());
+                intent.putExtra("finalmoney",data.getFinalmoney());
+
+                mContext.startActivity(intent);
+
+            }
+            if(i==2){
+                Intent intent = new Intent(mContext,judgment.class);
+                intent.putExtra("start",data.getStart());
+                intent.putExtra("desti",data.getDesti());
+                intent.putExtra("driver",data.getDriver());
+                intent.putExtra("finalmoney",data.getFinalmoney());
+                intent.putExtra("distance",data.getDistance());
+                mContext.startActivity(intent);
+            }
+        }
+
     }
 
     class CustomTask1 extends AsyncTask<String, Void, String> {
